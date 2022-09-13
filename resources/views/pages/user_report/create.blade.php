@@ -39,6 +39,10 @@
                             value="{{ isset($user_report) ? $user_report->age : @old('age') }}">
                     </div>
                     <div class="mb-3">
+                        <label for="address" class="form-label">Alamat Anak</label>
+                        <textarea name="address" class="form-control">{{ isset($user_report) ? $user_report->address : @old('address') }}</textarea>
+                    </div>
+                    <div class="mb-3">
                         <label for="note" class="form-label">Catatan Laporan</label>
                         <textarea name="note" class="form-control">{{ isset($user_report) ? $user_report->note : @old('note') }}</textarea>
                     </div>

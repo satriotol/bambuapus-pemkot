@@ -17,6 +17,7 @@ class UserReport extends Model
     }
     public function user_report_statuses()
     {
-        return $this->hasMany(UserReportStatus::class, 'user_report_id', ' id');
+        return $this->hasMany(UserReportStatus::class, 'user_report_id', 'id');
     }
+
 }

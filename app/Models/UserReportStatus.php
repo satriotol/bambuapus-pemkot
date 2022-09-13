@@ -18,6 +18,6 @@ class UserReportStatus extends Model
     ];
     public function user_report()
     {
-        return $this->belongsTo(UserReport::class, 'user_report_id', 'id');
+        return $this->belongsTo(UserReport::class, 'user_report_id', 'id')->latest();
     }
 }

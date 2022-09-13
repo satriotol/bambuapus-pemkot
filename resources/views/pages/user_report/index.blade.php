@@ -25,25 +25,30 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
+                                    <th>Tanggal</th>
                                     <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Phone</th>
-                                    <th>Candidate</th>
+                                    <th>Alamat</th>
+                                    <th>Umur</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($user_reports as $user_report)
                                     <tr>
+                                        <td>{{ $user_report->created_at }}</td>
+                                        <td>{{ $user_report->user->name }}</td>
+                                        <td>{{ $user_report->address }}</td>
+                                        <td>{{ $user_report->age }}</td>
                                         <td>
+                                            @foreach ($user_report->user_report_statuses as $user_report_status)
+                                                @if ($loop->last)
+                                                    {{ $user_report_status->status }}
+                                                @endif
+                                            @endforeach
                                         </td>
                                         <td>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

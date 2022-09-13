@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserReport;
+use App\Models\UserReportStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserReportController extends Controller
 {
@@ -36,7 +38,21 @@ class UserReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'user_id' => 'nullable',
+            'name' => 'required',
+            'age' => 'numeric',
+            'address' => 'required',
+            'note' => 'nullable'
+        ]);
+        $data['user_id'] = Auth::user()->id;
+        $user_report = UserReport::create($data);
+        UserReportStatus::create([
+            'user_report_id' => $user_report->id,
+            'status' => UserReportStatus::STATUSES[0]
+        ]);
+        session()->flash('success');
+        return redirect()->route('user_report.index');
     }
 
     /**
