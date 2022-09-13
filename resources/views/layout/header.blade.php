@@ -22,21 +22,23 @@
                         </div>
                     </div>
                     <ul class="list-unstyled p-1">
-                        </li>
-                        <li class="dropdown-item py-2">
-                            <a href="javascript:;" class="text-body ms-0">
-                                <i class="me-2 icon-md" data-feather="edit"></i>
-                                <span>Edit Profile</span>
-                            </a>
-                        </li>
-                        <li class="dropdown-item py-2">
-                            <a href="javascript:;" class="text-body ms-0">
-                                <i class="me-2 icon-md" data-feather="log-out"></i>
-                                <span>Log Out</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            </li>
+            <li class="dropdown-item py-2">
+                <a href="javascript:;" class="text-body ms-0">
+                    <i class="me-2 icon-md" data-feather="edit"></i>
+                    <span>Edit Profile</span>
+                </a>
+            </li>
+            <li class="dropdown-item py-2">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a class="text-body ms-0" style="cursor: pointer;" :href="route('logout')"
+                        onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                        <i class="me-2 icon-md" data-feather="log-out"></i>
+                        <span>Log Out</span>
+                    </a>
+                </form>
             </li>
         </ul>
     </div>
