@@ -27,6 +27,10 @@
     <link href="{{ asset('assets/fonts/feather-font/css/iconfont.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
+        integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- end plugin css -->
 
     @stack('plugin-styles')
@@ -36,6 +40,11 @@
     <!-- end common css -->
 
     @stack('style')
+    <style>
+        .required {
+            color: red;
+        }
+    </style>
 </head>
 
 <body data-base-url="{{ url('/') }}">
@@ -68,6 +77,28 @@
     <!-- end common js -->
 
     @stack('custom-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"
+        integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @if (session()->has('success'))
+        <script>
+            iziToast.success({
+                title: 'OK',
+                message: 'Successfully',
+            });
+        </script>
+    @endif
+    <script>
+        $(function() {
+            $('.mb-3:has(input[required]) > label')
+                .after('<span class="required"> *</span>')
+            $('.mb-3:has(select[required]) > label')
+                .after('<span class="required"> *</span>')
+            $('.mb-3:has(textarea[required]) > label')
+                .after('<span class="required"> *</span>')
+        })
+    </script>
 </body>
 
 </html>

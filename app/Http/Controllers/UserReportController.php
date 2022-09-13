@@ -16,7 +16,7 @@ class UserReportController extends Controller
      */
     public function index()
     {
-        $user_reports = UserReport::paginate(5);
+        $user_reports = UserReport::orderBy('id', 'DESC')->paginate(5);
         return view('pages.user_report.index', compact('user_reports'));
     }
 
@@ -72,9 +72,9 @@ class UserReportController extends Controller
      * @param  \App\Models\UserReport  $userReport
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserReport $userReport)
+    public function edit(UserReport $user_report)
     {
-        //
+        return view('pages.user_report.create', compact('user_report'));
     }
 
     /**
@@ -84,9 +84,18 @@ class UserReportController extends Controller
      * @param  \App\Models\UserReport  $userReport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserReport $userReport)
+    public function update(Request $request, UserReport $user_report)
     {
-        //
+        $data = $this->validate($request, [
+            'user_id' => 'nullable',
+            'name' => 'required',
+            'age' => 'numeric',
+            'address' => 'required',
+            'note' => 'nullable'
+        ]);
+        $user_report->update($data);
+        session()->flash('success');
+        return redirect()->route('user_report.index');
     }
 
     /**
@@ -95,8 +104,11 @@ class UserReportController extends Controller
      * @param  \App\Models\UserReport  $userReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserReport $userReport)
+    public function destroy(UserReport $user_report)
     {
-        //
+        $user_report->delete();
+        $user_report->user_report_statuses()->delete();
+        session()->flash('success');
+        return redirect()->route('user_report.index');
     }
 }

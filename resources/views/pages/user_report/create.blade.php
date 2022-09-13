@@ -29,25 +29,21 @@
                             value="{{ isset($user_report) ? $user_report->name : @old('name') }}">
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Nomor HP Anak</label>
-                        <input type="text" name="phone" required class="form-control" id=""
-                            value="{{ isset($user_report) ? $user_report->phone : @old('phone') }}">
-                    </div>
-                    <div class="mb-3">
                         <label for="age" class="form-label">Umur Anak</label>
                         <input type="number" name="age" required class="form-control" id=""
                             value="{{ isset($user_report) ? $user_report->age : @old('age') }}">
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Alamat Anak</label>
-                        <textarea name="address" class="form-control">{{ isset($user_report) ? $user_report->address : @old('address') }}</textarea>
+                        <textarea name="address" required class="form-control">{{ isset($user_report) ? $user_report->address : @old('address') }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="note" class="form-label">Catatan Laporan</label>
                         <textarea name="note" class="form-control">{{ isset($user_report) ? $user_report->note : @old('note') }}</textarea>
                     </div>
                     <div class="text-end">
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <a class="btn btn-warning" href="{{ url()->previous() }}">Kembali</a>
+                        <input class="btn btn-success" type="submit" value="Simpan">
                     </div>
                 </form>
             </div>

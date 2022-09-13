@@ -37,18 +37,31 @@
                                 @foreach ($user_reports as $user_report)
                                     <tr>
                                         <td>{{ $user_report->created_at }}</td>
-                                        <td>{{ $user_report->user->name }}</td>
+                                        <td>{{ $user_report->name }}</td>
                                         <td>{{ $user_report->address }}</td>
                                         <td>{{ $user_report->age }}</td>
                                         <td>
                                             @foreach ($user_report->user_report_statuses as $user_report_status)
                                                 @if ($loop->last)
+                                                    <span class="badge bg-danger">Released</span>
                                                     {{ $user_report_status->status }}
                                                 @endif
                                             @endforeach
                                         </td>
                                         <td>
-                                            
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="{{ route('user_report.edit', $user_report->id) }}"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('user_report.destroy', $user_report->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Are you sure?')">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
