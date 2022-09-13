@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('user_report', UserReportController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

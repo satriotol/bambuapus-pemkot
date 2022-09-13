@@ -9,7 +9,7 @@ class UserReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'age', 'address'];
+    protected $fillable = ['user_id', 'name', 'age', 'address', 'note'];
 
     public function user()
     {

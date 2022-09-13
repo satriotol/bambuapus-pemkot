@@ -14,7 +14,8 @@ class UserReportController extends Controller
      */
     public function index()
     {
-        //
+        $user_reports = UserReport::paginate(5);
+        return view('pages.user_report.index', compact('user_reports'));
     }
 
     /**
@@ -24,7 +25,7 @@ class UserReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.user_report.create');
     }
 
     /**

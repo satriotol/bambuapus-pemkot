@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('age');
             $table->longText('address');
+            $table->longText('note')->nullable();
             $table->timestamps();
         });
     }
