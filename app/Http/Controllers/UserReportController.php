@@ -62,9 +62,10 @@ class UserReportController extends Controller
      * @param  \App\Models\UserReport  $userReport
      * @return \Illuminate\Http\Response
      */
-    public function show(UserReport $userReport)
+    public function show(UserReport $user_report)
     {
-        //
+        $statuses = Status::all();
+        return view('pages.user_report.detail', compact('user_report', 'statuses'));
     }
 
     /**

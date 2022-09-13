@@ -51,6 +51,10 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="{{ route('user_report.show', $user_report->id) }}"
+                                                    class="btn btn-sm btn-primary">
+                                                    Detail
+                                                </a>
                                                 <a href="{{ route('user_report.edit', $user_report->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <form action="{{ route('user_report.destroy', $user_report->id) }}"

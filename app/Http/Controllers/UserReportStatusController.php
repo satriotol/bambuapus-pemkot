@@ -33,9 +33,19 @@ class UserReportStatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user_report_id)
     {
-        //
+        $data = $this->validate($request, [
+            'user_report_id' => 'nullable',
+            'status_id' => 'required',
+            'note' => 'nullable',
+            'file' => 'nullable|file',
+        ]);
+        $data['user_report_id'] = $user_report_id;
+
+        UserReportStatus::create($data);
+        session()->flash('success');
+        return back();
     }
 
     /**
@@ -78,8 +88,10 @@ class UserReportStatusController extends Controller
      * @param  \App\Models\UserReportStatus  $userReportStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserReportStatus $userReportStatus)
+    public function destroy(UserReportStatus $user_report_status)
     {
-        //
+        $user_report_status->delete();
+        session()->flash('success');
+        return back();
     }
 }
