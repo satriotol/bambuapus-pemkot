@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('user_report', UserReportController::class);
+    Route::resource('status', StatusController::class);
 });
 
 require __DIR__ . '/auth.php';

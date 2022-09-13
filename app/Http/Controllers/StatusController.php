@@ -14,7 +14,8 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
+        $statuses = Status::all();
+        return view('pages.status.index', compact('statuses'));
     }
 
     /**
@@ -24,7 +25,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.status.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'color' => 'required',
+        ]);
+        Status::create($data);
+        session()->flash('success');
+        return redirect()->route('status.index');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use App\Models\UserReport;
 use App\Models\UserReportStatus;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class UserReportController extends Controller
         $user_report = UserReport::create($data);
         UserReportStatus::create([
             'user_report_id' => $user_report->id,
-            'status' => UserReportStatus::STATUSES[0]
+            'status_id' => Status::first()->id
         ]);
         session()->flash('success');
         return redirect()->route('user_report.index');

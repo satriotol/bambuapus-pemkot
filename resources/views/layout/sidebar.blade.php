@@ -25,6 +25,12 @@
                     <span class="link-title">Laporan</span>
                 </a>
             </li>
+            <li class="nav-item {{ active_class(['status.*']) }}">
+                <a href="{{ route('status.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="message-square"></i>
+                    <span class="link-title">Status Laporan</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
