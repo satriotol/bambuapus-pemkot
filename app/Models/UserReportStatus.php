@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserReportStatus extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_report_id', 'status', 'note', 'file'];
+    protected $fillable = ['user_report_id', 'status_id', 'note', 'file'];
 
     const STATUSES = [
         'PENDING',
@@ -18,6 +18,10 @@ class UserReportStatus extends Model
     ];
     public function user_report()
     {
-        return $this->belongsTo(UserReport::class, 'user_report_id', 'id')->latest();
+        return $this->belongsTo(UserReport::class, 'user_report_id', 'id');
+    }
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id', 'id');
     }
 }
