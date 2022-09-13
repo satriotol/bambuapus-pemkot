@@ -15,10 +15,18 @@ class UserReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user_reports = UserReport::orderBy('id', 'DESC')->paginate(5);
+        $status_search = $request->status_search;
+        $date_search = $request->date_search;
+        $user_reports = UserReport::orderBy('id', 'DESC')
+            ->when($status_search, function ($q) use ($status_search) {
+                $q->where('status_id', $status_search);
+            })->when($date_search, function ($q) use ($date_search){
+                $q->whereDate('created_at', $date_search);
+            })->paginate();
         $statuses = Status::all();
+        $request->flash();
         return view('pages.user_report.index', compact('user_reports', 'statuses'));
     }
 
@@ -32,7 +40,7 @@ class UserReportController extends Controller
         return view('pages.user_report.create');
     }
 
-/**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

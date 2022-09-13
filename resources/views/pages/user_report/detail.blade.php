@@ -50,39 +50,35 @@
                         <div class="col-md-6">
                             <p class="mb-2 fw-bold">Detail Laporan</p>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nama</label>
+                                <label for="name" class="form-label fw-bold">Nama</label>
                                 <p>{{ $user_report->name }}</p>
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Umur</label>
+                                <label for="name" class="form-label fw-bold">Umur</label>
                                 <p>{{ $user_report->age }}</p>
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Alamat</label>
+                                <label for="name" class="form-label fw-bold">Alamat</label>
                                 <p>{{ $user_report->address }}</p>
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Catatan</label>
+                                <label for="name" class="form-label fw-bold">Catatan</label>
                                 <p>{{ $user_report->note ?? '-' }}</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <p class="mb-2 fw-bold">Detail Pelapor</p>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nama | Email</label>
+                                <label for="name" class="form-label fw-bold">Nama | Email</label>
                                 <p>{{ $user_report->user->name }} | {{ $user_report->user->email }}</p>
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">NIK</label>
+                                <label for="name" class="form-label fw-bold">NIK</label>
                                 <p>{{ $user_report->user->user_detail->nik ?? '-' }}</p>
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nomor HP</label>
+                                <label for="name" class="form-label fw-bold">Nomor HP</label>
                                 <p>{{ $user_report->user->user_detail->phone ?? '-' }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Catatan</label>
-                                <p>{{ $user_report->note ?? '-' }}</p>
                             </div>
                         </div>
                     </div>

@@ -36,8 +36,35 @@
 
                 </div>
             </div>
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Pencarian</h6>
+                        <form action="">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Status</label>
+                                <select name="status_search" class="form-control">
+                                    <option value="">Pilih Status</option>
+                                    @foreach ($statuses as $status)
+                                        <option value="{{ $status->id }}"
+                                            @if (old('status_search') == $status->id) selected @endif>{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Tanggal</label>
+                                <input type="date" name="date_search" class="form-control"
+                                    value="{{ old('date_search') }}" id="">
+                            </div>
+                            <div class="text-end">
+                                <input class="btn btn-success" type="submit" value="Cari">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-12 grid-margin stretch-card">
+        <div class="col-md-12 grid-margin stretch-card mt-3">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Laporan</h6>
@@ -97,6 +124,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $user_reports->links() }}
                     </div>
                 </div>
             </div>
