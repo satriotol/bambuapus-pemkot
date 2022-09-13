@@ -11,6 +11,32 @@
         </ol>
     </nav>
     <div class="row">
+        <div class="row">
+            <div class="col-12 col-xl-12 stretch-card">
+                <div class="row flex-grow-1">
+                    @foreach ($statuses as $status)
+                        <div class="col-md-3 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-baseline">
+                                        <h6 class="card-title mb-0">{{ $status->name }}</h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 col-md-12 col-xl-5">
+                                            <h3 class="mb-2">{{ $status->user_reports->count() }}</h3>
+                                        </div>
+                                        <div class="col-6 col-md-12 col-xl-7">
+                                            <div id="customersChart" class="mt-md-3 mt-xl-0"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -18,7 +44,7 @@
                     <div class="text-end mb-2">
                         <a class="btn btn-primary" href="{{ route('user_report.create') }}">
                             <i data-feather="plus"></i>
-                            Create
+                            Tambah
                         </a>
                     </div>
                     <div class="table-responsive">
@@ -41,13 +67,9 @@
                                         <td>{{ $user_report->address }}</td>
                                         <td>{{ $user_report->age }}</td>
                                         <td>
-                                            @foreach ($user_report->user_report_statuses as $user_report_status)
-                                                @if ($loop->last)
-                                                    <span class="badge bg-{{ $user_report_status->status->color }}">
-                                                        {{ $user_report_status->status->name }}
-                                                    </span>
-                                                @endif
-                                            @endforeach
+                                            <span class="badge bg-{{ $user_report->status->color }}">
+                                                {{ $user_report->status->name }}
+                                            </span>
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">

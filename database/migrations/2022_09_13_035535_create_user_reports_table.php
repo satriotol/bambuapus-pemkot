@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('user_reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('status_id');
             $table->string('name');
             $table->integer('age');
             $table->longText('address');

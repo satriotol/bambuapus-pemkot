@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserReport;
 use App\Models\UserReportStatus;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,11 @@ class UserReportStatusController extends Controller
         ]);
         $data['user_report_id'] = $user_report_id;
 
-        UserReportStatus::create($data);
+        $user_report_status = UserReportStatus::create($data);
+        $user_report = UserReport::where('id', $user_report_id)->first();
+        $user_report->update([
+            'status_id' => $user_report_status->status_id
+        ]);
         session()->flash('success');
         return back();
     }

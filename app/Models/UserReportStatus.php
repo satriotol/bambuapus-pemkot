@@ -10,12 +10,6 @@ class UserReportStatus extends Model
     use HasFactory;
     protected $fillable = ['user_report_id', 'status_id', 'note', 'file'];
 
-    const STATUSES = [
-        'PENDING',
-        'PROSES',
-        'SELESAI',
-        'DITOLAK',
-    ];
     public function user_report()
     {
         return $this->belongsTo(UserReport::class, 'user_report_id', 'id');

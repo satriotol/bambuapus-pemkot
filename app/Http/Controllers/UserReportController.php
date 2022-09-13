@@ -18,7 +18,8 @@ class UserReportController extends Controller
     public function index()
     {
         $user_reports = UserReport::orderBy('id', 'DESC')->paginate(5);
-        return view('pages.user_report.index', compact('user_reports'));
+        $statuses = Status::all();
+        return view('pages.user_report.index', compact('user_reports', 'statuses'));
     }
 
     /**
@@ -47,6 +48,7 @@ class UserReportController extends Controller
             'note' => 'nullable'
         ]);
         $data['user_id'] = Auth::user()->id;
+        $data['status_id'] = Status::first()->id;
         $user_report = UserReport::create($data);
         UserReportStatus::create([
             'user_report_id' => $user_report->id,

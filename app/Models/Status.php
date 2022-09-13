@@ -11,6 +11,10 @@ class Status extends Model
     protected $fillable = ['name', 'color'];
     public function user_report_statuses()
     {
-        return $this->hasMany(Status::class, 'status_id', 'id');
+        return $this->hasMany(UserReportStatus::class, 'status_id', 'id');
+    }
+    public function user_reports()
+    {
+        return $this->hasMany(UserReport::class, 'status_id', 'id');
     }
 }
