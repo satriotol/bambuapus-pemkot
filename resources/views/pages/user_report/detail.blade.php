@@ -12,7 +12,7 @@
         <div class="text-end mb-2">
             <a class="btn btn-warning" href="{{ route('user_report.index') }}">Kembali</a>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Form Riwayat</h4>
@@ -43,8 +43,53 @@
                     </form>
                 </div>
             </div>
+            <div class="card mt-2">
+                <div class="card-body">
+                    <h4 class="card-title">Detail</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-2 fw-bold">Detail Laporan</p>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama</label>
+                                <p>{{ $user_report->name }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Umur</label>
+                                <p>{{ $user_report->age }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Alamat</label>
+                                <p>{{ $user_report->address }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Catatan</label>
+                                <p>{{ $user_report->note ?? '-' }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-2 fw-bold">Detail Pelapor</p>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama | Email</label>
+                                <p>{{ $user_report->user->name }} | {{ $user_report->user->email }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">NIK</label>
+                                <p>{{ $user_report->user->user_detail->nik ?? '-' }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nomor HP</label>
+                                <p>{{ $user_report->user->user_detail->phone ?? '-' }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Catatan</label>
+                                <p>{{ $user_report->note ?? '-' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Riwayat</h6>

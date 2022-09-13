@@ -32,7 +32,7 @@ class UserReportController extends Controller
         return view('pages.user_report.create');
     }
 
-    /**
+/**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

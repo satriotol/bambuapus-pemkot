@@ -12,10 +12,10 @@
     </nav>
     <div class="row">
         <div class="row">
-            <div class="col-12 col-xl-12 stretch-card">
+            <div class="col-12 col-md-6 stretch-card">
                 <div class="row flex-grow-1">
                     @foreach ($statuses as $status)
-                        <div class="col-md-3 grid-margin stretch-card">
+                        <div class="col-6 col-md-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-baseline">
@@ -77,17 +77,20 @@
                                                     class="btn btn-sm btn-primary">
                                                     Detail
                                                 </a>
-                                                <a href="{{ route('user_report.edit', $user_report->id) }}"
-                                                    class="btn btn-sm btn-warning">Edit</a>
-                                                <form action="{{ route('user_report.destroy', $user_report->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Are you sure?')">
-                                                        Hapus
-                                                    </button>
-                                                </form>
+                                                @if ($user_report->status->name == 'PENDING')
+                                                    <a href="{{ route('user_report.edit', $user_report->id) }}"
+                                                        class="btn btn-sm btn-warning">Edit</a>
+                                                    <form action="{{ route('user_report.destroy', $user_report->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure?')">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                @endif
+
                                             </div>
                                         </td>
                                     </tr>

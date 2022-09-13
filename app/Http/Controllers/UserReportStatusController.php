@@ -95,7 +95,13 @@ class UserReportStatusController extends Controller
      */
     public function destroy(UserReportStatus $user_report_status)
     {
+        $id = $user_report_status->user_report_id;
         $user_report_status->delete();
+        $user_report_status_master = UserReportStatus::where('user_report_id', $id)->orderBy('id', 'desc')->first();
+        $user_report = UserReport::where('id', $id)->first();
+        $user_report->update([
+            'status_id' => $user_report_status_master->status_id,
+        ]);
         session()->flash('success');
         return back();
     }
