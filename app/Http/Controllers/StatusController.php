@@ -12,6 +12,13 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:status_laporan-index|status_laporan-create|status_laporan-edit|status_laporan-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:status_laporan-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:status_laporan-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:status_laporan-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $statuses = Status::all();

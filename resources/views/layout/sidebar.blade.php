@@ -31,6 +31,7 @@
                     <span class="link-title">Status Laporan</span>
                 </a>
             </li>
+            @role('SUPERADMIN')
             <li class="nav-item nav-category">Manajemen User</li>
             <li class="nav-item {{ active_class(['admin.*']) }}">
                 <a href="{{ route('admin.index') }}" class="nav-link">
@@ -50,6 +51,7 @@
                     <span class="link-title">Permission</span>
                 </a>
             </li>
+            @endrole
         </ul>
     </div>
 </nav>

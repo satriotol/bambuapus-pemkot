@@ -15,6 +15,13 @@ class UserReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:laporan-index|laporan-create|laporan-edit|laporan-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:laporan-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:laporan-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:laporan-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         $status_search = $request->status_search;
@@ -22,7 +29,7 @@ class UserReportController extends Controller
         $user_reports = UserReport::orderBy('id', 'DESC')
             ->when($status_search, function ($q) use ($status_search) {
                 $q->where('status_id', $status_search);
-            })->when($date_search, function ($q) use ($date_search){
+            })->when($date_search, function ($q) use ($date_search) {
                 $q->whereDate('created_at', $date_search);
             })->paginate();
         $statuses = Status::all();
