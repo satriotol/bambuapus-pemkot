@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class UserReportStatus extends Model
 {
@@ -17,5 +18,9 @@ class UserReportStatus extends Model
     public function status()
     {
         return $this->belongsTo(Status::class, 'status_id', 'id');
+    }
+    public function deleteFile()
+    {
+        Storage::disk('public_uploads')->delete($this->attributes['file']);
     }
 }
