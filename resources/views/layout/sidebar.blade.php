@@ -31,6 +31,25 @@
                     <span class="link-title">Status Laporan</span>
                 </a>
             </li>
+            <li class="nav-item nav-category">Manajemen User</li>
+            <li class="nav-item {{ active_class(['user_report.*']) }}">
+                <a href="{{ route('user_report.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="user"></i>
+                    <span class="link-title">Admin</span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['user_report.*']) }}">
+                <a href="{{ route('user_report.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="users"></i>
+                    <span class="link-title">Role</span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['user_report.*']) }}">
+                <a href="{{ route('user_report.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="user-check"></i>
+                    <span class="link-title">Permission</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
