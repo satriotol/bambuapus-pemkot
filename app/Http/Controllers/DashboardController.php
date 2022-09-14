@@ -20,6 +20,23 @@ class DashboardController extends Controller
         }
         $total_reports = UserReport::all()->count();
         $total_users = User::has('user_detail')->get()->count();
-        return view('pages.dashboard', compact('statuses', 'total_reports', 'total_users'));
+        $chart_bar = $this->reports();
+        return view('pages.dashboard', compact('statuses', 'total_reports', 'total_users', 'chart_bar'));
+    }
+    public function reports()
+    {
+        $user_reports = UserReport::select(DB::raw("COUNT(*) as count"))
+            ->whereYear('created_at', date('Y'))
+            ->GroupBy(DB::raw("Month(created_at)"))
+            ->pluck('count');
+        $months = UserReport::select(DB::raw("Month(created_at) as month"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("Month(created_at)"))
+            ->pluck('month');
+        $datas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        foreach ($months as $index => $month) {
+            $datas[$month - 1] = $user_reports[$index];
+        }
+        return $datas;
     }
 }
