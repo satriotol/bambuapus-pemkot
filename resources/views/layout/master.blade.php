@@ -41,7 +41,8 @@
 
     @stack('style')
     <style>
-        .required {
+        .required,
+        small {
             color: red;
         }
     </style>

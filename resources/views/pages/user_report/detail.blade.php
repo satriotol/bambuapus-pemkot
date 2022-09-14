@@ -33,10 +33,11 @@
                             <label for="note" class="form-label">Catatan Laporan</label>
                             <textarea name="note" class="form-control">{{ @old('note') }}</textarea>
                         </div>
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="note" class="form-label">File Pendukung</label>
-                            <textarea name="note" class="form-control">{{ isset($user_report) ? $user_report->note : @old('note') }}</textarea>
-                        </div> --}}
+                            <input type="file" class="form-control" name="file">
+                            <small>Maksimal ukuran 2mb</small>
+                        </div>
                         <div class="text-end">
                             <input class="btn btn-success" type="submit" value="Simpan">
                         </div>
@@ -97,15 +98,18 @@
                                     <p>{{ $user_report_status->note }}</p>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @if ($user_report_status->file)
-                                            <a href="" class="btn btn-sm btn-primary">Lihat Dokumen</a>
+                                            <a href="{{ asset('uploads/' . $user_report_status->file) }}" target="_blank"
+                                                class="btn btn-icon btn-primary">
+                                                <i class="btn-icon-prepend" data-feather="file"></i>
+                                            </a>
                                         @endif
                                         <form action="{{ route('user_report_status.destroy', $user_report_status->id) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger"
+                                            <button type="submit" class="btn btn-icon btn-danger"
                                                 onclick="return confirm('Are you sure?')">
-                                                Hapus
+                                                <i class="btn-icon-prepend" data-feather="trash"></i>
                                             </button>
                                         </form>
                                     </div>

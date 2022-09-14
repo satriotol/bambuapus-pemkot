@@ -40,8 +40,15 @@ class UserReportStatusController extends Controller
             'user_report_id' => 'nullable',
             'status_id' => 'required',
             'note' => 'nullable',
-            'file' => 'nullable|file',
+            'file' => 'nullable|file|max:200000',
         ]);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $name = $file->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $file = $file->storeAs('file', $file_name, 'public_uploads');
+            $data['file'] = $file;
+        };
         $data['user_report_id'] = $user_report_id;
 
         $user_report_status = UserReportStatus::create($data);
