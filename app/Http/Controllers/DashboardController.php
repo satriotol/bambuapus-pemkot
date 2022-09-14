@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('pages.dashboard');
+        $statuses = Status::all();
+        return view('pages.dashboard', compact('statuses'));
     }
 }

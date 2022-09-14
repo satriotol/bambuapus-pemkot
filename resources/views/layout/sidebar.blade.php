@@ -1,7 +1,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
         <a href="#" class="sidebar-brand">
-            Bambu<span>Apus</span>
+            BAMBUAPUS
         </a>
         <div class="sidebar-toggler not-active">
             <span></span>
@@ -19,38 +19,42 @@
                 </a>
             </li>
             <li class="nav-item nav-category">Laporan</li>
-            <li class="nav-item {{ active_class(['user_report.*']) }}">
-                <a href="{{ route('user_report.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
-                    <span class="link-title">Laporan</span>
-                </a>
-            </li>
-            <li class="nav-item {{ active_class(['status.*']) }}">
-                <a href="{{ route('status.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
-                    <span class="link-title">Status Laporan</span>
-                </a>
-            </li>
+            @can(['laporan-index'])
+                <li class="nav-item {{ active_class(['user_report.*']) }}">
+                    <a href="{{ route('user_report.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="message-square"></i>
+                        <span class="link-title">Laporan</span>
+                    </a>
+                </li>
+            @endcan
+            @can(['status_laporan-index'])
+                <li class="nav-item {{ active_class(['status.*']) }}">
+                    <a href="{{ route('status.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="message-square"></i>
+                        <span class="link-title">Status Laporan</span>
+                    </a>
+                </li>
+            @endcan()
             @role('SUPERADMIN')
-            <li class="nav-item nav-category">Manajemen User</li>
-            <li class="nav-item {{ active_class(['admin.*']) }}">
-                <a href="{{ route('admin.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="user"></i>
-                    <span class="link-title">Admin</span>
-                </a>
-            </li>
-            <li class="nav-item {{ active_class(['role.*']) }}">
-                <a href="{{ route('role.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="users"></i>
-                    <span class="link-title">Role</span>
-                </a>
-            </li>
-            <li class="nav-item {{ active_class(['permission.*']) }}">
-                <a href="{{ route('permission.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="user-check"></i>
-                    <span class="link-title">Permission</span>
-                </a>
-            </li>
+                <li class="nav-item nav-category">Manajemen User</li>
+                <li class="nav-item {{ active_class(['admin.*']) }}">
+                    <a href="{{ route('admin.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="user"></i>
+                        <span class="link-title">Admin</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ active_class(['role.*']) }}">
+                    <a href="{{ route('role.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="users"></i>
+                        <span class="link-title">Role</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ active_class(['permission.*']) }}">
+                    <a href="{{ route('permission.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="user-check"></i>
+                        <span class="link-title">Permission</span>
+                    </a>
+                </li>
             @endrole
         </ul>
     </div>
