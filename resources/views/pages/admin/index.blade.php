@@ -26,6 +26,9 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -34,9 +37,23 @@
                                     <tr>
                                         <td>{{ $admin->name }}</td>
                                         <td>
+                                            {{ $admin->email }}
+                                        </td>
+                                        <td>
+                                            @if (!empty($admin->getRoleNames()))
+                                                @foreach ($admin->getRoleNames() as $v)
+                                                    <label class="badge bg-success">{{ $v }}</label>
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $admin->created_at }}
+                                        </td>
+                                        <td>
                                             <div class="btn-group" admin="group" aria-label="Basic example">
-                                                <form action="{{ route('admin.destroy', $admin->id) }}"
-                                                    method="POST">
+                                                <a href="{{ route('admin.edit', $admin->id) }}"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('admin.destroy', $admin->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"

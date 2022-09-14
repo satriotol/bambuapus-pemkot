@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -25,7 +28,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('pages.admin.create', compact('roles'));
     }
 
     /**
@@ -36,7 +40,17 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|confirmed',
+            'roles' => 'required'
+        ]);
+        $data['password'] = Hash::make($request->password);
+        $user = User::create($data);
+        $user->assignRole($data['roles']);
+        session()->flash('success');
+        return redirect(route('admin.index'));
     }
 
     /**
@@ -56,9 +70,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $admin)
     {
-        //
+        $roles = Role::all();
+        return view('pages.admin.create', compact('admin', 'roles'));
     }
 
     /**
@@ -68,9 +83,23 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $admin)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users,email,' . $admin->id,
+            'password' => 'nullable|confirmed',
+            'roles' => 'required'
+        ]);
+        $data = $request->except('password');
+        if ($request->password) {
+            $data['password'] = Hash::make($request->password);
+        }
+        $admin->update($data);
+        DB::table('model_has_roles')->where('model_id', $admin->id)->delete();
+        $admin->assignRole($request['roles']);
+        session()->flash('success');
+        return redirect(route('admin.index'));
     }
 
     /**
@@ -79,8 +108,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $admin)
     {
-        //
+        $admin->delete();
+        session()->flash('success');
+        return back();
     }
 }
