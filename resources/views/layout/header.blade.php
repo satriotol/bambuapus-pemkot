@@ -24,7 +24,7 @@
                     <ul class="list-unstyled p-1">
             </li>
             <li class="dropdown-item py-2">
-                <a href="javascript:;" class="text-body ms-0">
+                <a href="{{route('profile.edit')}}" class="text-body ms-0">
                     <i class="me-2 icon-md" data-feather="edit"></i>
                     <span>Edit Profile</span>
                 </a>
