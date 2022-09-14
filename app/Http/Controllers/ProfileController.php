@@ -21,8 +21,17 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
             'password' => 'nullable|confirmed',
+            'image' => 'nullable|image',
         ]);
         $data = $request->except('password');
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $file = $file->storeAs('file', $file_name, 'public_uploads');
+            $user->deleteFile();
+            $data['image'] = $file;
+        };
         if ($request->password) {
             $data['password'] = Hash::make($request->password);
         }
