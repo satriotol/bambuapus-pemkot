@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -27,6 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('user_report', UserReportController::class);
     Route::resource('status', StatusController::class);
+    Route::resource('admin', AdminController::class);
     Route::resource('role', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::post('user_report_status/{user_report_id}', [UserReportStatusController::class, 'store'])->name('user_report_status.store');

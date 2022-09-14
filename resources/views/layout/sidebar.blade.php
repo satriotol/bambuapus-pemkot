@@ -32,8 +32,8 @@
                 </a>
             </li>
             <li class="nav-item nav-category">Manajemen User</li>
-            <li class="nav-item {{ active_class(['user_report.*']) }}">
-                <a href="{{ route('user_report.index') }}" class="nav-link">
+            <li class="nav-item {{ active_class(['admin.*']) }}">
+                <a href="{{ route('admin.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="user"></i>
                     <span class="link-title">Admin</span>
                 </a>
