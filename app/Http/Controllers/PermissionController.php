@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return view('pages.role.index', compact('roles'));
+        $permissions = Permission::all();
+        return view('pages.permission.index', compact('permissions'));
     }
 
     /**
@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.permission.create');
     }
 
     /**
@@ -36,7 +36,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name.*' => 'required',
+            'guard_name' => 'nullable',
+        ]);
+        foreach ($request->name as $key => $value) {
+            Permission::create([
+                'name' => $value,
+                'guard_name' => 'web'
+            ]);
+        }
+        session()->flash('success');
+        return redirect()->route('permission.index');
     }
 
     /**
@@ -79,8 +90,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        session()->flash('success');
+        return back();
     }
 }
