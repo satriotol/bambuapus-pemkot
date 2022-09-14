@@ -51,9 +51,12 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" admin="group" aria-label="Basic example">
-                                                <a href="{{ route('admin.edit', $admin->id) }}"
-                                                    class="btn btn-sm btn-warning">Edit</a>
-                                                <form action="{{ route('admin.reset_password', $admin->id) }}" method="POST">
+                                                @if ($admin->id == Auth::user()->id)
+                                                    <a href="{{ route('admin.edit', $admin->id) }}"
+                                                        class="btn btn-sm btn-warning">Edit</a>
+                                                @endif
+                                                <form action="{{ route('admin.reset_password', $admin->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-info"
                                                         onclick="return confirm('Are you sure?')">
