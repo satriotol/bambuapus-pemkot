@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user_report', UserReportController::class);
     Route::resource('status', StatusController::class);
     Route::resource('admin', AdminController::class);
+    Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
     Route::resource('role', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::post('user_report_status/{user_report_id}', [UserReportStatusController::class, 'store'])->name('user_report_status.store');

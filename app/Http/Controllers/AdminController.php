@@ -114,4 +114,12 @@ class AdminController extends Controller
         session()->flash('success');
         return back();
     }
+    public function reset_password(User $admin)
+    {
+        $admin->update([
+            'password' => ''
+        ]);
+        session()->flash('success');
+        return back();
+    }
 }

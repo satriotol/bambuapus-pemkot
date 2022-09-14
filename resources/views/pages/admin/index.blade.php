@@ -53,6 +53,13 @@
                                             <div class="btn-group" admin="group" aria-label="Basic example">
                                                 <a href="{{ route('admin.edit', $admin->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('admin.reset_password', $admin->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-info"
+                                                        onclick="return confirm('Are you sure?')">
+                                                        Reset Password
+                                                    </button>
+                                                </form>
                                                 <form action="{{ route('admin.destroy', $admin->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
