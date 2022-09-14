@@ -37,6 +37,12 @@
             @endcan()
             @role('SUPERADMIN')
                 <li class="nav-item nav-category">Manajemen User</li>
+                <li class="nav-item {{ active_class(['user.*']) }}">
+                    <a href="{{ route('user.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="user"></i>
+                        <span class="link-title">User</span>
+                    </a>
+                </li>
                 <li class="nav-item {{ active_class(['admin.*']) }}">
                     <a href="{{ route('admin.index') }}" class="nav-link">
                         <i class="link-icon" data-feather="user"></i>

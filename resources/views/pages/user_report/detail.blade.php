@@ -13,37 +13,39 @@
             <a class="btn btn-warning" href="{{ route('user_report.index') }}">Kembali</a>
         </div>
         <div class="col-md-5">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Form Riwayat</h4>
-                    @include('partials.errors')
-                    <form action="{{ route('user_report_status.store', $user_report->id) }} " method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Status</label>
-                            <select name="status_id" class="form-control" required>
-                                <option value="">Pilih Status</option>
-                                @foreach ($statuses as $status)
-                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">Catatan Laporan</label>
-                            <textarea name="note" class="form-control">{{ @old('note') }}</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="note" class="form-label">File Pendukung</label>
-                            <input type="file" class="form-control" name="file">
-                            <small>Maksimal ukuran 2mb</small>
-                        </div>
-                        <div class="text-end">
-                            <input class="btn btn-success" type="submit" value="Simpan">
-                        </div>
-                    </form>
+            @unlessrole('USER')
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Form Riwayat</h4>
+                        @include('partials.errors')
+                        <form action="{{ route('user_report_status.store', $user_report->id) }} " method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Status</label>
+                                <select name="status_id" class="form-control" required>
+                                    <option value="">Pilih Status</option>
+                                    @foreach ($statuses as $status)
+                                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Catatan Laporan</label>
+                                <textarea name="note" class="form-control">{{ @old('note') }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">File Pendukung</label>
+                                <input type="file" class="form-control" name="file">
+                                <small>Maksimal ukuran 2mb</small>
+                            </div>
+                            <div class="text-end">
+                                <input class="btn btn-success" type="submit" value="Simpan">
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            @endunlessrole
             <div class="card mt-2">
                 <div class="card-body">
                     <h4 class="card-title">Detail</h4>
@@ -103,15 +105,17 @@
                                                 <i class="btn-icon-prepend" data-feather="file"></i>
                                             </a>
                                         @endif
-                                        <form action="{{ route('user_report_status.destroy', $user_report_status->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-icon btn-danger"
-                                                onclick="return confirm('Are you sure?')">
-                                                <i class="btn-icon-prepend" data-feather="trash"></i>
-                                            </button>
-                                        </form>
+                                        @unlessrole('USER')
+                                            <form action="{{ route('user_report_status.destroy', $user_report_status->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-icon btn-danger"
+                                                    onclick="return confirm('Are you sure?')">
+                                                    <i class="btn-icon-prepend" data-feather="trash"></i>
+                                                </button>
+                                            </form>
+                                        @endunlessrole
                                     </div>
                                 </li>
                             @endforeach

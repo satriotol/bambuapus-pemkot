@@ -7,17 +7,17 @@
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Admin</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tabel Admin</li>
+            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tabel User</li>
         </ol>
     </nav>
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Admin</h6>
+                    <h6 class="card-title">User</h6>
                     <div class="text-end mb-2">
-                        <a class="btn btn-primary" href="{{ route('admin.create') }}">
+                        <a class="btn btn-primary" href="{{ route('user.create') }}">
                             <i data-feather="plus"></i>
                             Tambah
                         </a>
@@ -26,37 +26,33 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
+                                    <th>NIK</th>
                                     <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Role</th>
+                                    <th>Nomor HP</th>
+                                    <th>Alamat</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($admins as $admin)
+                                @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $admin->name }}</td>
+                                        <td>{{ $user->user_detail->nik }}</td>
+                                        <td>{{ $user->name }}</td>
                                         <td>
-                                            {{ $admin->email }}
+                                            {{ $user->email }}
                                         </td>
+                                        <td>{{ $user->user_detail->phone }}</td>
+                                        <td>{{ $user->user_detail->address }}</td>
                                         <td>
-                                            @if (!empty($admin->getRoleNames()))
-                                                @foreach ($admin->getRoleNames() as $v)
-                                                    <label class="badge bg-success">{{ $v }}</label>
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{ $admin->created_at }}
+                                            {{ $user->created_at }}
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                @if ($admin->id == Auth::user()->id)
-                                                    <a href="{{ route('admin.edit', $admin->id) }}"
-                                                        class="btn btn-sm btn-warning">Edit</a>
-                                                @endif
-                                                <form action="{{ route('admin.reset_password', $admin->id) }}"
+                                                <a href="{{ route('user.edit', $user->id) }}"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('admin.reset_password', $user->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-info"
@@ -64,14 +60,16 @@
                                                         Reset Password
                                                     </button>
                                                 </form>
-                                                <form action="{{ route('admin.destroy', $admin->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Are you sure?')">
-                                                        Hapus
-                                                    </button>
-                                                </form>
+                                                @if ($user->id != Auth::user()->id)
+                                                    <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure?')">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

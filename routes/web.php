@@ -6,6 +6,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserReportController;
 use App\Http\Controllers\UserReportStatusController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user_report', UserReportController::class);
     Route::resource('status', StatusController::class);
     Route::resource('admin', AdminController::class);
+    Route::resource('user', UserController::class);
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
     Route::group(['middleware' => ['role:SUPERADMIN']], function () {
         Route::resource('role', RoleController::class);

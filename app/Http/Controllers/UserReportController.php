@@ -26,12 +26,23 @@ class UserReportController extends Controller
     {
         $status_search = $request->status_search;
         $date_search = $request->date_search;
-        $user_reports = UserReport::orderBy('id', 'DESC')
-            ->when($status_search, function ($q) use ($status_search) {
-                $q->where('status_id', $status_search);
-            })->when($date_search, function ($q) use ($date_search) {
-                $q->whereDate('created_at', $date_search);
-            })->paginate();
+        if (Auth::user()->user_detail) {
+            $user_reports = UserReport::whereHas('user', function ($q) {
+                $q->where('user_id', Auth::user()->id);
+            })->orderBy('id', 'DESC')
+                ->when($status_search, function ($q) use ($status_search) {
+                    $q->where('status_id', $status_search);
+                })->when($date_search, function ($q) use ($date_search) {
+                    $q->whereDate('created_at', $date_search);
+                })->paginate();
+        } else {
+            $user_reports = UserReport::orderBy('id', 'DESC')
+                ->when($status_search, function ($q) use ($status_search) {
+                    $q->where('status_id', $status_search);
+                })->when($date_search, function ($q) use ($date_search) {
+                    $q->whereDate('created_at', $date_search);
+                })->paginate();
+        }
         $statuses = Status::all();
         $request->flash();
         return view('pages.user_report.index', compact('user_reports', 'statuses'));
