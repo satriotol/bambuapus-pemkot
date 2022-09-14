@@ -14,7 +14,6 @@
         <div class="row">
             <div class="col-12 col-md-6 stretch-card">
                 <div class="row flex-grow-1">
-                    @unlessrole('USER')
                         @foreach ($statuses as $status)
                             <div class="col-6 col-md-6 grid-margin stretch-card">
                                 <div class="card">
@@ -24,7 +23,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-6 col-md-12 col-xl-5">
-                                                <h3 class="mb-2">{{ $status->user_reports->count() }}</h3>
+                                                <h3 class="mb-2">{{ $status->count }}</h3>
                                             </div>
                                             <div class="col-6 col-md-12 col-xl-7">
                                                 <div id="customersChart" class="mt-md-3 mt-xl-0"></div>
@@ -34,7 +33,6 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endunlessrole
                 </div>
             </div>
             <div class="col-12 col-md-6">

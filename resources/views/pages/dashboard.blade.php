@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-12">
-                                        <h3 class="mb-2">{{ $status->user_reports->count() }}</h3>
+                                        <h3 class="mb-2">{{ $status->count }}</h3>
                                     </div>
                                 </div>
                             </div>
