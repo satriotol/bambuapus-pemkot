@@ -30,6 +30,7 @@
                         </div>
                     </div>
                 @endforeach
+                @unlessrole('USER')
                 <div class="col-md-6 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
@@ -58,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+                @endunlessrole
             </div>
         </div>
     </div> <!-- row -->
