@@ -60,11 +60,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-8 grid-margin grid-margin-xl-0 stretch-card">
+                        <div class="col-xl-7 grid-margin grid-margin-xl-0 stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h6 class="card-title">Grouped bar chart</h6>
+                                    <h6 class="card-title">Laporan Tahunan</h6>
                                     <canvas id="chartjsGroupedBar1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">Pie chart</h6>
+                                    <canvas id="chartjsPie1"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -84,6 +92,7 @@
     <script>
         $(function() {
             var datas = {{ json_encode($chart_bar) }};
+            var pie_datas = {{ json_encode($pie_chart) }};
             'use strict';
             var colors = {
                 primary: "#6571ff",
@@ -108,10 +117,26 @@
                         'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'
                     ],
                     datasets: [{
-                        label: "PELAPOR",
-                        backgroundColor: colors.danger,
-                        data: datas
-                    }]
+                            label: "PENDING",
+                            backgroundColor: colors.warning,
+                            data: datas[0]
+                        },
+                        {
+                            label: "PROSES",
+                            backgroundColor: colors.info,
+                            data: datas[1]
+                        },
+                        {
+                            label: "SELESAI",
+                            backgroundColor: colors.success,
+                            data: datas[2]
+                        },
+                        {
+                            label: "DITOLAK",
+                            backgroundColor: colors.danger,
+                            data: datas[3]
+                        },
+                    ]
                 },
                 options: {
                     plugins: {
@@ -157,6 +182,33 @@
                             }
                         }
                     }
+                }
+            });
+            new Chart($('#chartjsPie1'), {
+                type: 'pie',
+                data: {
+                    labels: ["PENDING", "PROSES", "SELESAI", "DITOLAK"],
+                    datasets: [{
+                        label: "Population (millions)",
+                        backgroundColor: [colors.warning, colors.info, colors.success, colors.danger],
+                        borderColor: colors.cardBg,
+                        data: pie_datas
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: colors.bodyColor,
+                                font: {
+                                    size: '13px',
+                                    family: fontFamily
+                                }
+                            }
+                        },
+                    },
+                    aspectRatio: 2,
                 }
             });
         });

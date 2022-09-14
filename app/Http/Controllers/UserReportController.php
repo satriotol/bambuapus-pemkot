@@ -34,14 +34,14 @@ class UserReportController extends Controller
                     $q->where('status_id', $status_search);
                 })->when($date_search, function ($q) use ($date_search) {
                     $q->whereDate('created_at', $date_search);
-                })->paginate();
+                })->paginate(10);
         } else {
             $user_reports = UserReport::orderBy('id', 'DESC')
                 ->when($status_search, function ($q) use ($status_search) {
                     $q->where('status_id', $status_search);
                 })->when($date_search, function ($q) use ($date_search) {
                     $q->whereDate('created_at', $date_search);
-                })->paginate();
+                })->paginate(10);
         }
         $statuses = Status::all();
         $request->flash();
