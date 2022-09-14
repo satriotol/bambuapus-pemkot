@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @push('plugin-styles')
+    <link href="{{ asset('assets/plugins/datatables-net-bs5/dataTables.bootstrap5.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -37,8 +38,7 @@
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="{{ route('role.edit', $role->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
-                                                <form action="{{ route('role.destroy', $role->id) }}"
-                                                    method="POST">
+                                                <form action="{{ route('role.destroy', $role->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
@@ -60,7 +60,10 @@
 @endsection
 
 @push('plugin-scripts')
+    <script src="{{ asset('assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-net-bs5/dataTables.bootstrap5.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
+    <script src="{{ asset('assets/js/data-table.js') }}"></script>
 @endpush
