@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Status;
+use App\Models\User;
 use App\Models\UserReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,8 @@ class DashboardController extends Controller
         } else {
             $statuses = Status::all();
         }
-        return view('pages.dashboard', compact('statuses'));
+        $total_reports = UserReport::all()->count();
+        $total_users = User::has('user_detail')->get()->count();
+        return view('pages.dashboard', compact('statuses', 'total_reports', 'total_users'));
     }
 }

@@ -78,6 +78,7 @@
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>
+                                    <th>Pelapor</th>
                                     <th>Name</th>
                                     <th>Alamat</th>
                                     <th>Umur</th>
@@ -89,6 +90,7 @@
                                 @foreach ($user_reports as $user_report)
                                     <tr>
                                         <td>{{ $user_report->created_at }}</td>
+                                        <td>{{ $user_report->user->name }}</td>
                                         <td>{{ $user_report->name }}</td>
                                         <td>{{ $user_report->address }}</td>
                                         <td>{{ $user_report->age }}</td>

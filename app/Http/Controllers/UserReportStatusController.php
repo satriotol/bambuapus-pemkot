@@ -109,7 +109,9 @@ class UserReportStatusController extends Controller
         $user_report->update([
             'status_id' => $user_report_status_master->status_id,
         ]);
-        $user_report_status->deleteFile();
+        if ($user_report_status->image) {
+            $user_report_status->deleteFile();
+        }
         session()->flash('success');
         return back();
     }

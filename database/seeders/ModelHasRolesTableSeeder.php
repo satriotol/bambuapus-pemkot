@@ -29,7 +29,13 @@ class ModelHasRolesTableSeeder extends Seeder
             array (
                 'role_id' => 3,
                 'model_type' => 'App\\Models\\User',
-                'model_id' => 2,
+                'model_id' => 4,
+            ),
+            2 => 
+            array (
+                'role_id' => 3,
+                'model_type' => 'App\\Models\\User',
+                'model_id' => 5,
             ),
         ));
         
