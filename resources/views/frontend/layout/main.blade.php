@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Eduker – Online Course & Education HTML5 Template</title>
+    <title>BAMBU APUS | PEMERINTAH KOTA SEMARANG</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="frontend_assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('bambuapus.png') }}">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/bootstrap.css') }}">

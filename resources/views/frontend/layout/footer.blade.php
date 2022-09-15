@@ -115,7 +115,7 @@
                 <div class="row">
                     <div class="col-xxl-12">
                         <div class="footer__copyright text-center">
-                            <p>© 2022 Eduker. All Rights Reserved</p>
+                            <p>© 2022 Pemerintah Kota Semarang</p>
                         </div>
                     </div>
                 </div>

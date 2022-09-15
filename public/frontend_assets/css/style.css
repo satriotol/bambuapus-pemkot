@@ -2882,7 +2882,7 @@ input[type="color"] {
 }
 .about__shape-3 {
     position: absolute;
-    right: -7%;
+    right: -23%;
     top: 5%;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
