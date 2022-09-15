@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
-        Schema::defaultStringLength(191);
     }
 }
