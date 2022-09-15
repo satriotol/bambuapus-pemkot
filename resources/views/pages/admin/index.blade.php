@@ -52,10 +52,8 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                @if ($admin->id == Auth::user()->id)
-                                                    <a href="{{ route('admin.edit', $admin->id) }}"
-                                                        class="btn btn-sm btn-warning">Edit</a>
-                                                @endif
+                                                <a href="{{ route('admin.edit', $admin->id) }}"
+                                                    class="btn btn-sm btn-warning">Edit</a>
                                                 <form action="{{ route('admin.reset_password', $admin->id) }}"
                                                     method="POST">
                                                     @csrf
@@ -64,14 +62,16 @@
                                                         Reset Password
                                                     </button>
                                                 </form>
-                                                <form action="{{ route('admin.destroy', $admin->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Are you sure?')">
-                                                        Hapus
-                                                    </button>
-                                                </form>
+                                                @if ($admin->id != Auth::user()->id)
+                                                    <form action="{{ route('admin.destroy', $admin->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure?')">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

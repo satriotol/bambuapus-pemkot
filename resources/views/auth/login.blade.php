@@ -13,15 +13,13 @@
                         </div>
                         <div class="col-md-8 ps-md-0">
                             <div class="auth-form-wrapper px-4 py-5">
-                                <a href="#" class="noble-ui-logo d-block mb-2">SITAMU</a>
-                                <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
-                                @foreach ($errors->all() as $key => $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                <a href="#" class="noble-ui-logo d-block mb-2">BAMBUAPUS</a>
+                                <h5 class="text-muted fw-normal mb-4">Bergerak Bersama Membantu Anak Putus Sekolah</h5>
+                                @include('partials.errors')
                                 <form class="forms-sample" method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="userEmail" class="form-label">Email address</label>
+                                        <label for="userEmail" class="form-label">Alamat Email</label>
                                         <input type="email" class="form-control" id="userEmail" name="email"
                                             placeholder="Email">
                                     </div>
@@ -39,8 +37,8 @@
                                     <div>
                                         <button class="btn btn-primary me-2 mb-2 mb-md-0" type="submit">Login</button>
                                     </div>
-                                    <a href="{{ route('register') }}" class="d-block mt-3 text-muted">Not a user? Sign
-                                        up</a>
+                                    {{-- <a href="{{ route('register') }}" class="d-block mt-3 text-muted">Not a user? Sign
+                                        up</a> --}}
                                 </form>
                             </div>
                         </div>

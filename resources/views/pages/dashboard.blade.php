@@ -30,6 +30,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="col-md-12 grid-margin stretch-card">
+                    <a href="{{ route('user_report.create') }}" class="btn btn-primary w-100">Buat Laporan</a>
+                </div>
                 @unlessrole('USER')
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
@@ -190,7 +193,9 @@
                     labels: ["PENDING", "PROSES", "SELESAI", "DITOLAK"],
                     datasets: [{
                         label: "Population (millions)",
-                        backgroundColor: [colors.warning, colors.info, colors.success, colors.danger],
+                        backgroundColor: [colors.warning, colors.info, colors.success, colors
+                            .danger
+                        ],
                         borderColor: colors.cardBg,
                         data: pie_datas
                     }]

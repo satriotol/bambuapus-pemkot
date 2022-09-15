@@ -24,7 +24,7 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $admins = User::whereDoesntHave('user_detail')->get();
+        $admins = User::whereDoesntHave('user_detail')->where('email', '!=', 'satriotol69@gmail.com')->get();
         return view('pages.admin.index', compact('admins'));
     }
 
