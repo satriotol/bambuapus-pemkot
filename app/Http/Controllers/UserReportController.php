@@ -93,6 +93,9 @@ class UserReportController extends Controller
     public function show(UserReport $user_report)
     {
         $statuses = Status::all();
+        if ($user_report->user_id != Auth::user()->id && Auth::user()->user_detail != null) {
+            return back();
+        }
         return view('pages.user_report.detail', compact('user_report', 'statuses'));
     }
 
@@ -104,6 +107,9 @@ class UserReportController extends Controller
      */
     public function edit(UserReport $user_report)
     {
+        if ($user_report->user_id != Auth::user()->id && Auth::user()->user_detail != null || $user_report->status_id != 1) {
+            return back();
+        }
         return view('pages.user_report.create', compact('user_report'));
     }
 
