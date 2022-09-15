@@ -16,7 +16,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Nunc maximus, nulla
                                     utlaoki comm odo sagittis.</p>
                                 <div class="footer__social">
-                                    <h4>Follow Us</h4>
+                                    <h4>Sosial Media</h4>
 
                                     <ul>
                                         <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a>
