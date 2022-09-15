@@ -35,6 +35,13 @@
                     </a>
                 </li>
             @endcan()
+            <li class="nav-item nav-category">Laporan</li>
+            <li class="nav-item {{ active_class(['slider.*']) }}">
+                <a href="{{ route('slider.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="message-square"></i>
+                    <span class="link-title">Slider</span>
+                </a>
+            </li>
             @role('SUPERADMIN')
                 <li class="nav-item nav-category">Manajemen User</li>
                 <li class="nav-item {{ active_class(['user.*']) }}">

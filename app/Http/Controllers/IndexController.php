@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function home(){
-        return view('frontend.home');   
+    public function home()
+    {
+        $sliders = Slider::all();
+        return view('frontend.home', compact('sliders'));
     }
 }
