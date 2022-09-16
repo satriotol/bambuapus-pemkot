@@ -29,4 +29,8 @@ class IndexController extends Controller
         $user_reports_count = UserReport::all()->count();
         return view('frontend.home', compact('sliders', 'statuses', 'user_reports_count'));
     }
+    public function login()
+    {
+        return view('frontend.login');
+    }
 }

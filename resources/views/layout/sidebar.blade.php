@@ -34,32 +34,34 @@
                         <span class="link-title">Status Laporan</span>
                     </a>
                 </li>
-            @endcan()
-            <li class="nav-item nav-category">Website</li>
-            <li class="nav-item {{ active_class(['about.*']) }}">
-                <a href="{{ route('about.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
-                    <span class="link-title">Tentang</span>
-                </a>
-            </li>
-            <li class="nav-item {{ active_class(['slider.*']) }}">
-                <a href="{{ route('slider.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
-                    <span class="link-title">Slider</span>
-                </a>
-            </li>
-            <li class="nav-item {{ active_class(['socialMedia.*']) }}">
-                <a href="{{ route('socialMedia.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
-                    <span class="link-title">Sosial Media</span>
-                </a>
-            </li>
-            <li class="nav-item {{ active_class(['link.*']) }}">
-                <a href="{{ route('link.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
-                    <span class="link-title">Link</span>
-                </a>
-            </li>
+            @endcan
+            @can('website')
+                <li class="nav-item nav-category">Website</li>
+                <li class="nav-item {{ active_class(['about.*']) }}">
+                    <a href="{{ route('about.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="message-square"></i>
+                        <span class="link-title">Tentang</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ active_class(['slider.*']) }}">
+                    <a href="{{ route('slider.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="message-square"></i>
+                        <span class="link-title">Slider</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ active_class(['socialMedia.*']) }}">
+                    <a href="{{ route('socialMedia.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="message-square"></i>
+                        <span class="link-title">Sosial Media</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ active_class(['link.*']) }}">
+                    <a href="{{ route('link.index') }}" class="nav-link">
+                        <i class="link-icon" data-feather="message-square"></i>
+                        <span class="link-title">Link</span>
+                    </a>
+                </li>
+            @endcan
             @role('SUPERADMIN')
                 <li class="nav-item nav-category">Manajemen User</li>
                 <li class="nav-item {{ active_class(['user.*']) }}">

@@ -12,6 +12,10 @@ class SocialMediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:website');
+    }
     public function index()
     {
         $socialMedias = SocialMedia::all();

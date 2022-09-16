@@ -12,6 +12,10 @@ class AboutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:website');
+    }
     public function index()
     {
         $about = About::all()->first();

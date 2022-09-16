@@ -12,6 +12,10 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:website');
+    }
     public function index()
     {
         $sliders = Slider::all();
