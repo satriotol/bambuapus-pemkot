@@ -36,22 +36,25 @@
                         <label for="image" class="form-label">Gambar 1</label>
                         <input type="file" @empty($about) required @endempty accept="image/*"
                             class="form-control" name="image_1">
+                        <small>Untuk Ukuran Maksimal 401px x 570px</small>
                     </div>
                     @isset($about)
                         <img src="{{ asset('uploads/' . $about->image_1) }}" height="100px" alt="">
-                    @endisset 
+                    @endisset
                     <hr>
                     <div class="mb-3">
                         <label for="image" class="form-label">Gambar 2</label>
                         <input type="file" accept="image/*" class="form-control" name="image_2">
+                        <small>Untuk Ukuran Maksimal 241px x 280px</small>
                     </div>
                     @isset($about)
                         <img src="{{ asset('uploads/' . $about->image_2) }}" height="100px" alt="">
-                    @endisset 
+                    @endisset
                     <hr>
                     <div class="mb-3">
                         <label for="image" class="form-label">Gambar 3</label>
                         <input type="file" accept="image/*" class="form-control" name="image_3">
+                        <small>Untuk Ukuran Maksimal 241px x 150px</small>
                     </div>
                     @isset($about)
                         <img src="{{ asset('uploads/' . $about->image_3) }}" height="100px" alt="">

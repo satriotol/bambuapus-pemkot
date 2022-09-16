@@ -8,16 +8,23 @@ use App\Models\SocialMedia;
 use App\Models\Status;
 use App\Models\UserReport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class IndexController extends Controller
 {
+    public function __construct()
+    {
+        //its just a dummy data object.
+        $about = About::all()->first();
+        $socialMedias = SocialMedia::all();
+        // Sharing is caring
+        View::share(compact('about', 'socialMedias'));
+    }
     public function home()
     {
         $sliders = Slider::all();
         $statuses = Status::all();
-        $socialMedias = SocialMedia::all();
         $user_reports_count = UserReport::all()->count();
-        $about = About::all()->first();
-        return view('frontend.home', compact('sliders', 'statuses', 'user_reports_count', 'socialMedias', 'about'));
+        return view('frontend.home', compact('sliders', 'statuses', 'user_reports_count'));
     }
 }
