@@ -50,7 +50,7 @@
                 <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-6">
                     <div class="logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('bambuapus.png') }}" alt="logo">
+                            <img src="{{ asset('uploads/' . $about->icon) }}" alt="logo">
                         </a>
                     </div>
                 </div>

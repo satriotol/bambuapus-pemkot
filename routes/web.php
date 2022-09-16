@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('status', StatusController::class);
     Route::resource('slider', SliderController::class);
     Route::resource('socialMedia', SocialMediaController::class);
-    Route::resource('abouts', AboutController::class);
+    Route::resource('about', AboutController::class);
     Route::resource('admin', AdminController::class);
     Route::resource('user', UserController::class);
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');

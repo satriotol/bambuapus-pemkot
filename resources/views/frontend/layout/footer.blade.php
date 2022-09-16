@@ -7,7 +7,7 @@
                         <div class="footer__logo">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
-                                    <img src="{{ asset('bambuapus.png') }}" alt="">
+                                    <img src="{{ asset('uploads/' . $about->icon) }}" alt="">
                                 </a>
                             </div>
                         </div>

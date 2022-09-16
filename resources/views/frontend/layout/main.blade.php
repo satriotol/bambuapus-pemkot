@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/font-awesome-pro.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/spacing.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/style.css') }}">
+    @stack('style')
+</head>
 </head>
 
 <body>
@@ -32,7 +34,7 @@
                 <svg id="loader">
                     <path id="corners" d="m 0 12.5 l 0 -12.5 l 50 0 l 0 50 l -50 0 l 0 -37.5" />
                 </svg>
-                <img src="{{ asset('bambuapus.png') }}" height="100px" alt="">
+                <img src="{{ asset('uploads/' . $about->icon) }}" height="100px" alt="">
             </div>
         </div>
     </div>
@@ -59,7 +61,7 @@
                             <div class="offcanvas__top mb-40 d-flex justify-content-between align-items-center">
                                 <div class="offcanvas__logo logo">
                                     <a href="{{ route('home') }}">
-                                        <img src="{{ asset('bambuapus.png') }}" alt="logo">
+                                        <img src="{{ asset('uploads/' . $about->icon) }}" alt="logo">
                                     </a>
                                 </div>
                                 <div class="offcanvas__close">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Slider;
 use App\Models\SocialMedia;
 use App\Models\Status;
@@ -16,6 +17,7 @@ class IndexController extends Controller
         $statuses = Status::all();
         $socialMedias = SocialMedia::all();
         $user_reports_count = UserReport::all()->count();
-        return view('frontend.home', compact('sliders', 'statuses', 'user_reports_count', 'socialMedias'));
+        $about = About::all()->first();
+        return view('frontend.home', compact('sliders', 'statuses', 'user_reports_count', 'socialMedias', 'about'));
     }
 }

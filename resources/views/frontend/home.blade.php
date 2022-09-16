@@ -1,4 +1,16 @@
 @extends('frontend.layout.main')
+@push('style')
+    <style>
+        @media (max-width: 767.98px) {
+
+            .about__thumb-1 img,
+            .about__thumb-2 img {
+                width: 100% !important;
+                object-fit: cover !important;
+            }
+        }
+    </style>
+@endpush
 @section('content')
     <section class="slider__area">
         <div class="slider__active swiper-container">
@@ -149,36 +161,37 @@
                         </div>
                         <div class="about__thumb-left mr-10">
                             <div class="about__thumb-1 mb-10">
-                                <img src="frontend_assets/img/about/about-1.jpg" alt="">
+                                @if ($about->image_3)
+                                    <img src="{{ asset('uploads/' . $about->image_3) }}"
+                                        style="object-fit:contain; height: 150px; width: 171px" alt="">
+                                @endif
                             </div>
                             <div class="about__thumb-1 mb-10 text-end">
-                                <img src="frontend_assets/img/about/about-3.jpg" alt="">
+                                @if ($about->image_2)
+                                    <img src="{{ asset('uploads/' . $about->image_2) }}"
+                                        style="object-fit:contain; height: 280px; width: 241px" alt="">
+                                @endif
                             </div>
                         </div>
                         <div class="about__thumb-2 mb-10">
-                            <img src="frontend_assets/img/about/about-2.jpg" alt="">
+                            @if ($about->image_1)
+                                <img src="{{ asset('uploads/' . $about->image_1) }}"
+                                    style="object-fit:contain; height: 570px; width: 401px" alt="">
+                            @endif
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                     <div class="about__content pl-70 pr-25">
                         <div class="section__title-wrapper mb-15">
-                            <span class="section__title-pre">About eduker</span>
-                            <h2 class="section__title">Degrees in Various academic Didciplines</h2>
+                            <span class="section__title-pre">Tentang BAMBU APUS</span>
+                            <h2 class="section__title">{{ $about->title }}</h2>
                         </div>
-                        <p>Not only can university offer an environment rich in our social an cultural experiences.
+                        <p>{{ $about->description }}
                         </p>
 
-                        <div class="about__list mb-40">
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Access to all our courses</li>
-                                <li><i class="fa-solid fa-check"></i> Learn the latest skills</li>
-                                <li><i class="fa-solid fa-check"></i> Upskill your organization</li>
-                            </ul>
-                        </div>
-
                         <div class="about__btn">
-                            <a href="" class="tp-btn tp-btn-2">Read more</a>
+                            <a href="" class="tp-btn tp-btn-2">Buat Laporan</a>
                         </div>
                     </div>
                 </div>
