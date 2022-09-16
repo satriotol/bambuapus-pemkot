@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Link;
 use App\Models\Slider;
 use App\Models\SocialMedia;
 use App\Models\Status;
@@ -17,8 +18,9 @@ class IndexController extends Controller
         //its just a dummy data object.
         $about = About::all()->first();
         $socialMedias = SocialMedia::all();
+        $links = Link::all();
         // Sharing is caring
-        View::share(compact('about', 'socialMedias'));
+        View::share(compact('about', 'socialMedias', 'links'));
     }
     public function home()
     {

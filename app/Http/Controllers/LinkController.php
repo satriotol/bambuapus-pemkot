@@ -14,7 +14,8 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
+        $links = Link::all();
+        return view('pages.link.index', compact('links'));
     }
 
     /**
@@ -24,7 +25,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.link.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'url' => 'required|url',
+        ]);
+
+        Link::create($data);
+        session()->flash('success');
+        return redirect(route('link.index'));
     }
 
     /**
@@ -57,7 +65,7 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        //
+        return view('pages.link.create', compact('link'));
     }
 
     /**
@@ -69,7 +77,14 @@ class LinkController extends Controller
      */
     public function update(Request $request, Link $link)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'url' => 'required|url',
+        ]);
+
+        $link->update($data);
+        session()->flash('success');
+        return redirect(route('link.index'));
     }
 
     /**
@@ -80,6 +95,8 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-        //
+        $link->delete();
+        session()->flash('success');
+        return back();
     }
 }

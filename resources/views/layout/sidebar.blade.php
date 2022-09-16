@@ -54,6 +54,12 @@
                     <span class="link-title">Sosial Media</span>
                 </a>
             </li>
+            <li class="nav-item {{ active_class(['link.*']) }}">
+                <a href="{{ route('link.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="message-square"></i>
+                    <span class="link-title">Link</span>
+                </a>
+            </li>
             @role('SUPERADMIN')
                 <li class="nav-item nav-category">Manajemen User</li>
                 <li class="nav-item {{ active_class(['user.*']) }}">

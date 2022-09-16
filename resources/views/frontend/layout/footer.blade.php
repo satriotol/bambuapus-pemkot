@@ -31,62 +31,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-5">
-                    <div class="footer__widget mb-50">
-                        <h3 class="footer__widget-title">Explore</h3>
-                        <div class="footer__widget-content">
-                            <ul>
-                                <li>
-                                    <a href="#">About us</a>
-                                </li>
-                                <li>
-                                    <a href="#">Success story</a>
-                                </li>
-                                <li>
-                                    <a href="#">Courses</a>
-                                </li>
-                                <li>
-                                    <a href="#">About us</a>
-                                </li>
-                                <li>
-                                    <a href="#">Instructor</a>
-                                </li>
-                                <li>
-                                    <a href="#">Events</a>
-                                </li>
-                                <li>
-                                    <a href="#">Contact us</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-7">
                     <div class="footer__widget mb-50">
                         <h3 class="footer__widget-title">Links</h3>
                         <div class="footer__widget-content">
                             <ul>
-                                <li>
-                                    <a href="#">News & Blogs</a>
-                                </li>
-                                <li>
-                                    <a href="#">Library</a>
-                                </li>
-                                <li>
-                                    <a href="#">Gallery</a>
-                                </li>
-                                <li>
-                                    <a href="#">Terms of service</a>
-                                </li>
-                                <li>
-                                    <a href="#">Membership</a>
-                                </li>
-                                <li>
-                                    <a href="#">Career</a>
-                                </li>
-                                <li>
-                                    <a href="#">Partners</a>
-                                </li>
+                                @foreach ($links as $link)
+                                    <li>
+                                        <a href="{{ $link->url }}" target="_blank">{{ $link->name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

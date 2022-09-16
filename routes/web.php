@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('slider', SliderController::class);
     Route::resource('socialMedia', SocialMediaController::class);
     Route::resource('about', AboutController::class);
+    Route::resource('link', LinkController::class);
     Route::resource('admin', AdminController::class);
     Route::resource('user', UserController::class);
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
