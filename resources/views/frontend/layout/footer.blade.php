@@ -19,11 +19,12 @@
                                     <h4>Sosial Media</h4>
 
                                     <ul>
-                                        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                        </li>
-                                        <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                        </li>
+                                        @foreach ($socialMedias as $socialMedia)
+                                            <li>
+                                                <a href="{{ $socialMedia->url }}" target="_blank"><i
+                                                        class="{{ $socialMedia->icon }}"></i></a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

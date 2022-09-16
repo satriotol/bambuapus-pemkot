@@ -14,7 +14,8 @@ class SocialMediaController extends Controller
      */
     public function index()
     {
-        //
+        $socialMedias = SocialMedia::all();
+        return view('pages.socialMedia.index', compact('socialMedias'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SocialMediaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.socialMedia.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class SocialMediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'url' => 'required|url',
+            'icon' => 'required',
+        ]);
+
+        SocialMedia::create($data);
+        session()->flash('success');
+        return redirect(route('socialMedia.index'));
     }
 
     /**

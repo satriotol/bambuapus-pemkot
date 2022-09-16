@@ -64,6 +64,9 @@
                                 <li>
                                     <a href="#about">Tentang</a>
                                 </li>
+                                <li>
+                                    <a href="#about">Buat Laporan</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>

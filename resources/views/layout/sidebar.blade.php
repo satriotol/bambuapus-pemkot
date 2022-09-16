@@ -35,11 +35,17 @@
                     </a>
                 </li>
             @endcan()
-            <li class="nav-item nav-category">Laporan</li>
+            <li class="nav-item nav-category">Website</li>
             <li class="nav-item {{ active_class(['slider.*']) }}">
                 <a href="{{ route('slider.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="message-square"></i>
                     <span class="link-title">Slider</span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['socialMedia.*']) }}">
+                <a href="{{ route('socialMedia.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="message-square"></i>
+                    <span class="link-title">Sosial Media</span>
                 </a>
             </li>
             @role('SUPERADMIN')

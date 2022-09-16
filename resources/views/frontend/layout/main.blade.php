@@ -112,10 +112,12 @@
                             </div>
                             <div class="offcanvas__social">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                    @foreach ($socialMedias as $socialMedia)
+                                        <li>
+                                            <a href="{{ $socialMedia->url }}" target="_blank"><i
+                                                    class="{{ $socialMedia->icon }}"></i></a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
