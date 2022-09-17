@@ -24,6 +24,11 @@
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/spacing.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/style.css') }}">
     @stack('style')
+    <style>
+        .active {
+            color: var(--tp-theme-1) !important;
+        }
+    </style>
 </head>
 </head>
 

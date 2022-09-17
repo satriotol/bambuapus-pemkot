@@ -39,10 +39,10 @@
                         <nav id="mobile-menu">
                             <ul>
                                 <li>
-                                    <a href="{{ route('home') }}">Beranda</a>
+                                    <a class="{{ active_class(['home']) }}" href="{{ route('home') }}">Beranda</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('frontend.login') }}">Laporan</a>
+                                    <a class="{{ active_class(['frontend.*']) }}" href="{{ route('frontend.login') }}">Laporan</a>
                                 </li>
                             </ul>
                         </nav>
