@@ -2,7 +2,7 @@
     <div class="footer__top grey-bg-4 pt-95 pb-45">
         <div class="container">
             <div class="row">
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-7">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <div class="footer__widget footer-col-1 mb-50">
                         <div class="footer__logo">
                             <div class="logo">
@@ -13,8 +13,7 @@
                         </div>
                         <div class="footer__widget-content">
                             <div class="footer__widget-info">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Nunc maximus, nulla
-                                    utlaoki comm odo sagittis.</p>
+                                <p>Bergerak Bersama Membantu Anak Putus Sekolah</p>
                                 <div class="footer__social">
                                     <h4>Sosial Media</h4>
 
@@ -31,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-7">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <div class="footer__widget mb-50">
                         <h3 class="footer__widget-title">Links</h3>
                         <div class="footer__widget-content">
@@ -45,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-7">
+                {{-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-7">
                     <div class="footer__widget footer-col-4 mb-50">
                         <h3 class="footer__widget-title">Sign up for our newsletter</h3>
 
@@ -60,7 +59,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

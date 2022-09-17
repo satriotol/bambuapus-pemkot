@@ -29,7 +29,7 @@
                                         <p data-animation="fadeInUp" data-delay=".9s">{{ $slider->description }}
                                         </p>
                                         <div class="slider__btn" data-animation="fadeInUp" data-delay="1.1s">
-                                            <a href="course-v1.html" class="tp-btn">Find Courses</a>
+                                            <a href="{{ route('frontend.login') }}" class="tp-btn">Buat Laporan</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="features__content">
                                 <h3 class="features__title">
-                                    <a href="">Buat Laporan</a>
+                                    <a href="{{ route('frontend.login') }}">Buat Laporan</a>
                                 </h3>
                                 <p>Buat Laporan Anda Tentang Anak Putus Sekolah</p>
                             </div>
@@ -191,7 +191,7 @@
                         </p>
 
                         <div class="about__btn">
-                            <a href="" class="tp-btn tp-btn-2">Buat Laporan</a>
+                            <a href="{{ route('frontend.login') }}" class="tp-btn tp-btn-2">Buat Laporan</a>
                         </div>
                     </div>
                 </div>

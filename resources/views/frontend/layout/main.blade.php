@@ -128,6 +128,8 @@
     <script src="{{ asset('frontend_assets/js/imagesloaded-pkgd.js') }}"></script>
     <script src="{{ asset('frontend_assets/js/ajax-form.js') }}"></script>
     <script src="{{ asset('frontend_assets/js/main.js') }}"></script>
+    @stack('style')
+
 </body>
 
 </html>

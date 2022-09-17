@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserDetail;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
 
 class RegisteredUserController extends Controller
 {
@@ -37,6 +39,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'nik' => 'required|numeric',
+            'address' => 'required',
+            'phone' => 'required',
         ]);
 
         $user = User::create([
@@ -44,7 +49,14 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        UserDetail::create([
+            'user_id' => $user->id,
+            'nik' => $request->nik,
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ]);
+        $role = Role::where('name', 'USER')->first()->id;
+        $user->assignRole($role);
         event(new Registered($user));
 
         Auth::login($user);

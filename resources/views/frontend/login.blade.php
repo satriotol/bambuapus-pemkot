@@ -15,7 +15,7 @@
                 <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
                     <div class="section__title-wrapper text-center mb-55">
                         <h2 class="section__title">Masuk Pelaporan</h2>
-                        <p>Apabila Anda Tidak Punya Akun <a href="#">Buat Disini !</a></p>
+                        <p>Apabila Anda Tidak Punya Akun <a href="{{ route('frontend.register') }}">Buat Disini !</a></p>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <button class="tp-btn  w-100" type="submit"> <span></span> Masuk</button>
                                 <div class="sign__new text-center mt-20">
-                                    <p>Belum Punya Akun ? <a href="sign-up.html">Sign Up</a></p>
+                                    <p>Belum Punya Akun ? <a href="{{ route('frontend.register') }}">Sign Up</a></p>
                                 </div>
                             </form>
                         </div>
