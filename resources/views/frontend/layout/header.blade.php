@@ -1,3 +1,9 @@
+<style>
+    a.btn.btn-danger {
+        color: white !important;
+        padding: 5px 10px !important;
+    }
+</style>
 <div class="header__area">
     <div class="header__top header__border d-none d-md-block">
         <div class="container">
@@ -39,11 +45,41 @@
                         <nav id="mobile-menu">
                             <ul>
                                 <li>
-                                    <a class="{{ active_class(['home']) }}" href="{{ route('home') }}">Beranda</a>
+                                    <a class="{{ active_class(['home']) }}" href="{{ route('home') }}#">Beranda</a>
                                 </li>
                                 <li>
-                                    <a class="{{ active_class(['frontend.*']) }}" href="{{ route('frontend.login') }}">Laporan</a>
+                                    <a class="{{ active_class(['home']) }}#about"
+                                        href="{{ route('home') }}#about">Profile</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('home') }}#statistic">Statistik</a>
+                                </li>
+                                @guest
+                                    <li>
+                                        <a class="{{ active_class(['frontend.login']) }}"
+                                            href="{{ route('frontend.login') }}">Masuk</a>
+                                    </li>
+                                    <li>
+                                        <a class="{{ active_class(['frontend.register']) }}"
+                                            href="{{ route('frontend.register') }}">Daftar</a>
+                                    </li>
+                                @endguest
+                                @auth
+                                    <li>
+                                        <a href="{{ route('dashboard') }}">Lapor</a>
+                                    </li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <a style="cursor: pointer;" class="btn btn-danger" :href="route('logout')"
+                                                onclick="
+                                                event.preventDefault();
+                                                this.closest('form').submit();">
+                                                Keluar
+                                            </a>
+                                        </form>
+                                    </li>
+                                @endauth
                             </ul>
                         </nav>
                     </div>

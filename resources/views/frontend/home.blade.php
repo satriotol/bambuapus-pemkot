@@ -1,13 +1,21 @@
 @extends('frontend.layout.main')
 @push('style')
     <style>
-        @media (max-width: 767.98px) {
+        @media (max-width: 1399px) {
 
             .about__thumb-1 img,
             .about__thumb-2 img {
                 width: 100% !important;
                 object-fit: cover !important;
             }
+        }
+
+        #about {
+            padding-top: 10rem;
+        }
+
+        #statistic {
+            padding-top: 5rem;
         }
     </style>
 @endpush
@@ -47,7 +55,7 @@
     <!-- slider area end -->
 
     <!-- features area start -->
-    <section class="features__area pb-160">
+    <section class="features__area">
         <div class="container">
             <div class="features__inner p-relative z-index-1 white-bg">
                 <div class="row">
@@ -147,7 +155,7 @@
     <!-- features area end -->
 
     <!-- about area start -->
-    <section class="about__area pb-120 p-relative" id="about">
+    <section class="about__area p-relative" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
@@ -201,8 +209,11 @@
     <!-- about area end -->
 
     <!-- counter area start -->
-    <section class="counter__area pb-120">
+    <section class="counter__area pb-120" id="statistic">
         <div class="container">
+            <div class="section__title-wrapper mb-15">
+                <h2 class="section__title">Statistik Pelaporan</h2>
+            </div>
             <div class="counter__inner grey-bg-2">
                 <div class="row">
                     <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6">
