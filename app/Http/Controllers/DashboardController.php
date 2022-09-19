@@ -11,51 +11,57 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::user()->user_detail) {
             $statuses = Status::all();
         } else {
             $statuses = Status::all();
         }
+
         $total_reports = UserReport::all()->count();
         $total_users = User::has('user_detail')->get()->count();
-        $chart_bar = $this->reports();
+        $chart_bar = $this->reports($request);
         $pie_chart = $this->pie_chart();
         return view('pages.dashboard', compact('statuses', 'total_reports', 'total_users', 'chart_bar', 'pie_chart'));
     }
-    public function reports()
+    public function reports(Request $request)
     {
+        if (!$request->year) {
+            $year = date('Y');
+        } else {
+            $year = $request->year;
+        }
         $user_reports1 = UserReport::where('status_id', 1)->select(DB::raw("COUNT(*) as count"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->GroupBy(DB::raw("Month(created_at)"))
             ->pluck('count');
         $months1 = UserReport::where('status_id', 1)->select(DB::raw("Month(created_at) as month"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->groupBy(DB::raw("Month(created_at)"))
             ->pluck('month');
         $user_reports2 = UserReport::where('status_id', 2)->select(DB::raw("COUNT(*) as count"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->GroupBy(DB::raw("Month(created_at)"))
             ->pluck('count');
         $months2 = UserReport::where('status_id', 2)->select(DB::raw("Month(created_at) as month"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->groupBy(DB::raw("Month(created_at)"))
             ->pluck('month');
         $user_reports3 = UserReport::where('status_id', 3)->select(DB::raw("COUNT(*) as count"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->GroupBy(DB::raw("Month(created_at)"))
             ->pluck('count');
         $months3 = UserReport::where('status_id', 3)->select(DB::raw("Month(created_at) as month"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->groupBy(DB::raw("Month(created_at)"))
             ->pluck('month');
         $user_reports4 = UserReport::where('status_id', 4)->select(DB::raw("COUNT(*) as count"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->GroupBy(DB::raw("Month(created_at)"))
             ->pluck('count');
         $months4 = UserReport::where('status_id', 4)->select(DB::raw("Month(created_at) as month"))
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('created_at', $year)
             ->groupBy(DB::raw("Month(created_at)"))
             ->pluck('month');
         $datas1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -75,10 +81,26 @@ class DashboardController extends Controller
             $datas4[$month - 1] = $user_reports4[$index];
         }
         $datas = [
-            $datas1,
-            $datas2,
-            $datas3,
-            $datas4,
+            [
+                'backgroundColor' => '#fbbc06',
+                'data' => $datas1,
+                'label' => 'PENDING'
+            ],
+            [
+                'backgroundColor' => '#66d1d1',
+                'data' => $datas2,
+                'label' => 'PROSES'
+            ],
+            [
+                'backgroundColor' => '#05a34a',
+                'data' => $datas3,
+                'label' => 'SELESAI'
+            ],
+            [
+                'backgroundColor' => '#ff3366',
+                'data' => $datas4,
+                'label' => 'DITOLAK'
+            ],
         ];
         return $datas;
     }

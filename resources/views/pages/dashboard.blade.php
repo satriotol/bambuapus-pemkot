@@ -62,6 +62,8 @@
                             </div>
                         </div>
                     </div>
+                    <input type="text" name="year" class="form-control" id="year_input" id="">
+                    <button class="btn btn-primary" id="msg">Coba Tahun</button>
                     <div class="row">
                         <div class="col-xl-7 grid-margin grid-margin-xl-0 stretch-card">
                             <div class="card">
@@ -74,7 +76,7 @@
                         <div class="col-xl-5 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h6 class="card-title">Pie chart</h6>
+                                    <h6 class="card-title">Laporan Total</h6>
                                     <canvas id="chartjsPie1"></canvas>
                                 </div>
                             </div>
@@ -93,10 +95,9 @@
 @push('custom-scripts')
     <script src="{{ asset('assets/js/chartjs.js') }}"></script>
     <script>
-        $(function() {
-            var datas = {{ json_encode($chart_bar) }};
+        $(document).ready(function() {
+            var datas = {!! json_encode($chart_bar) !!};
             var pie_datas = {{ json_encode($pie_chart) }};
-            'use strict';
             var colors = {
                 primary: "#6571ff",
                 secondary: "#7987a1",
@@ -111,35 +112,17 @@
                 bodyColor: "#000",
                 cardBg: "#fff"
             }
-
-            var fontFamily = "'Roboto', Helvetica, sans-serif"
-            new Chart($('#chartjsGroupedBar1'), {
+            var fontFamily = "'Roboto', Helvetica, sans-serif";
+            window.ChartGroup = new Chart($('#chartjsGroupedBar1'), {
                 type: 'bar',
                 data: {
-                    labels: ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", 'JUNI', 'JULI', 'AGUSTUS',
-                        'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'
+                    labels: ["JANUARI", "FEBRUARI", "MARET",
+                        "APRIL", "MEI", 'JUNI', 'JULI',
+                        'AGUSTUS',
+                        'SEPTEMBER', 'OKTOBER', 'NOVEMBER',
+                        'DESEMBER'
                     ],
-                    datasets: [{
-                            label: "PENDING",
-                            backgroundColor: colors.warning,
-                            data: datas[0]
-                        },
-                        {
-                            label: "PROSES",
-                            backgroundColor: colors.info,
-                            data: datas[1]
-                        },
-                        {
-                            label: "SELESAI",
-                            backgroundColor: colors.success,
-                            data: datas[2]
-                        },
-                        {
-                            label: "DITOLAK",
-                            backgroundColor: colors.danger,
-                            data: datas[3]
-                        },
-                    ]
+                    datasets: datas
                 },
                 options: {
                     plugins: {
@@ -187,34 +170,59 @@
                     }
                 }
             });
-            new Chart($('#chartjsPie1'), {
-                type: 'pie',
-                data: {
-                    labels: ["PENDING", "PROSES", "SELESAI", "DITOLAK"],
-                    datasets: [{
-                        label: "Population (millions)",
-                        backgroundColor: [colors.warning, colors.info, colors.success, colors
-                            .danger
+            $(function() {
+                'use strict';
+                window.ChartGroup;
+                new Chart($('#chartjsPie1'), {
+                    type: 'pie',
+                    data: {
+                        labels: ["PENDING", "PROSES", "SELESAI",
+                            "DITOLAK"
                         ],
-                        borderColor: colors.cardBg,
-                        data: pie_datas
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                color: colors.bodyColor,
-                                font: {
-                                    size: '13px',
-                                    family: fontFamily
-                                }
-                            }
-                        },
+                        datasets: [{
+                            label: "Population (millions)",
+                            backgroundColor: [colors
+                                .warning, colors.info,
+                                colors.success,
+                                colors
+                                .danger
+                            ],
+                            borderColor: colors.cardBg,
+                            data: pie_datas
+                        }]
                     },
-                    aspectRatio: 2,
-                }
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: colors.bodyColor,
+                                    font: {
+                                        size: '13px',
+                                        family: fontFamily
+                                    }
+                                }
+                            },
+                        },
+                        aspectRatio: 2,
+                    }
+                });
+            });
+            $('#msg').click(function(e) {
+                var year_input = $('#year_input').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/dashboard/reports?year=" + year_input,
+                    method: 'get',
+                    success: function(result) {
+                        window.ChartGroup.data.datasets = result;
+                        window.ChartGroup.update();
+                    }
+                });
             });
         });
     </script>
