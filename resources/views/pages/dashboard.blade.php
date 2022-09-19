@@ -62,9 +62,16 @@
                             </div>
                         </div>
                     </div>
-                    <input type="text" name="year" class="form-control" id="year_input" id="">
-                    <button class="btn btn-primary" id="msg">Coba Tahun</button>
                     <div class="row">
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <label for="">Tahun</label>
+                                <input type="text" name="year" class="form-control" id="year_input" id="">
+                            </div>
+                            <div class="text-end">
+                                <button class="btn btn-primary" id="msg">Cari</button>
+                            </div>
+                        </div>
                         <div class="col-xl-7 grid-margin grid-margin-xl-0 stretch-card">
                             <div class="card">
                                 <div class="card-body">
@@ -173,7 +180,7 @@
             $(function() {
                 'use strict';
                 window.ChartGroup;
-                new Chart($('#chartjsPie1'), {
+                window.ChartPie = new Chart($('#chartjsPie1'), {
                     type: 'pie',
                     data: {
                         labels: ["PENDING", "PROSES", "SELESAI",
@@ -181,11 +188,11 @@
                         ],
                         datasets: [{
                             label: "Population (millions)",
-                            backgroundColor: [colors
-                                .warning, colors.info,
+                            backgroundColor: [
+                                colors.warning,
+                                colors.info,
                                 colors.success,
-                                colors
-                                .danger
+                                colors.danger,
                             ],
                             borderColor: colors.cardBg,
                             data: pie_datas
