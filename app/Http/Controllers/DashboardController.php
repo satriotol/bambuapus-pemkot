@@ -102,7 +102,17 @@ class DashboardController extends Controller
                 'label' => 'DITOLAK'
             ],
         ];
-        return $datas;
+        $user_reports1 = UserReport::where('status_id', 1)->whereYear('created_at', $year)->get()->count();
+        $user_reports2 = UserReport::where('status_id', 2)->whereYear('created_at', $year)->get()->count();
+        $user_reports3 = UserReport::where('status_id', 3)->whereYear('created_at', $year)->get()->count();
+        $user_reports4 = UserReport::where('status_id', 4)->whereYear('created_at', $year)->get()->count();
+        $datas2 = [
+            $user_reports1,
+            $user_reports2,
+            $user_reports3,
+            $user_reports4,
+        ];
+        return [$datas, $datas2];
     }
     public function pie_chart()
     {

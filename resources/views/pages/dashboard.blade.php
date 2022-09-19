@@ -103,7 +103,7 @@
     <script src="{{ asset('assets/js/chartjs.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var datas = {!! json_encode($chart_bar) !!};
+            var datas = {!! json_encode($chart_bar[0]) !!};
             var pie_datas = {{ json_encode($pie_chart) }};
             var colors = {
                 primary: "#6571ff",
@@ -226,8 +226,10 @@
                     url: "/dashboard/reports?year=" + year_input,
                     method: 'get',
                     success: function(result) {
-                        window.ChartGroup.data.datasets = result;
+                        window.ChartPie.data.datasets[0].data = result[1]
+                        window.ChartGroup.data.datasets = result[0];
                         window.ChartGroup.update();
+                        window.ChartPie.update();
                     }
                 });
             });
