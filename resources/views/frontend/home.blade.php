@@ -162,10 +162,11 @@
                     <div class="about__thumb-wrapper d-sm-flex mr-20 p-relative">
                         <div class="about__shape">
                             <img class="about__shape-1 d-none d-sm-block"
-                                src="frontend_assets/img/about/about-shape-1.png" alt="">
+                                src="{{ asset('frontend_assets/img/about/about-shape-1.png') }}" alt="">
                             <img class="about__shape-2 d-none d-sm-block"
-                                src="frontend_assets/img/about/about-shape-2.png" alt="">
-                            <img class="about__shape-3" src="frontend_assets/img/about/about-shape-3.png" alt="">
+                                src="{{ asset('frontend_assets/img/about/about-shape-2.png') }}" alt="">
+                            <img class="about__shape-3" src="{{ asset('frontend_assets/img/about/about-shape-3.png') }}"
+                                alt="">
                         </div>
                         <div class="about__thumb-left mr-10">
                             <div class="about__thumb-1 mb-10">

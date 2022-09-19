@@ -69,7 +69,7 @@ class SocialMediaController extends Controller
      */
     public function edit(SocialMedia $socialMedia)
     {
-        //
+        return view('pages.socialMedia.create', compact('socialMedia'));
     }
 
     /**
@@ -81,7 +81,13 @@ class SocialMediaController extends Controller
      */
     public function update(Request $request, SocialMedia $socialMedia)
     {
-        //
+        $data = $this->validate($request, [
+            'url' => 'required|url',
+            'icon' => 'required',
+        ]);
+        $socialMedia->update($data);
+        session()->flash('success');
+        return redirect(route('socialMedia.index'));
     }
 
     /**
@@ -92,6 +98,8 @@ class SocialMediaController extends Controller
      */
     public function destroy(SocialMedia $socialMedia)
     {
-        //
+        $socialMedia->delete();
+        session()->flash('success');
+        return back();
     }
 }
