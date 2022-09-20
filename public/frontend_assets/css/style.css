@@ -5243,7 +5243,7 @@ input[type="color"] {
     width: 100%;
     height: 100%;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 .blog__item-float-overlay {
@@ -5256,12 +5256,6 @@ input[type="color"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(
-        181.6deg,
-        rgba(3, 18, 32, 0) 24.31%,
-        rgba(3, 18, 32, 0) 24.32%,
-        rgba(3, 18, 32, 0.9) 98.64%
-    );
 }
 .blog__tag {
     margin-bottom: 4px;

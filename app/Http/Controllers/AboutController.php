@@ -50,6 +50,7 @@ class AboutController extends Controller
             'image_2' => 'nullable|image',
             'image_3' => 'nullable|image',
             'icon' => 'required|image',
+            'flowchart_image' => 'required|image'
         ]);
         if ($request->hasFile('image_1')) {
             $image_1 = $request->file('image_1');
@@ -78,6 +79,13 @@ class AboutController extends Controller
             $file_name = date('mdYHis') . '-' . $name;
             $icon = $icon->storeAs('file', $file_name, 'public_uploads');
             $data['icon'] = $icon;
+        };
+        if ($request->hasFile('flowchart_image')) {
+            $flowchart_image = $request->file('flowchart_image');
+            $name = $flowchart_image->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $flowchart_image = $flowchart_image->storeAs('file', $file_name, 'public_uploads');
+            $data['flowchart_image'] = $flowchart_image;
         };
 
         About::create($data);
@@ -123,6 +131,7 @@ class AboutController extends Controller
             'image_2' => 'nullable|image',
             'image_3' => 'nullable|image',
             'icon' => 'nullable|image',
+            'flowchart_image' => 'nullable|image',
         ]);
         if ($request->hasFile('image_1')) {
             $image_1 = $request->file('image_1');
@@ -163,6 +172,16 @@ class AboutController extends Controller
                 $about->deleteFile4();
             }
             $data['icon'] = $icon;
+        };
+        if ($request->hasFile('flowchart_image')) {
+            $flowchart_image = $request->file('flowchart_image');
+            $name = $flowchart_image->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $flowchart_image = $flowchart_image->storeAs('file', $file_name, 'public_uploads');
+            if ($about->flowchart_image) {
+                $about->deleteFile5();
+            }
+            $data['flowchart_image'] = $flowchart_image;
         };
 
         $about->update($data);

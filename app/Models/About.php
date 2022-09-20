@@ -10,7 +10,7 @@ class About extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'image_1', 'image_2', 'image_3', 'icon'];
+    protected $fillable = ['title', 'description', 'image_1', 'image_2', 'image_3', 'icon', 'flowchart_image'];
 
     public function deleteFile1()
     {
@@ -27,5 +27,9 @@ class About extends Model
     public function deleteFile4()
     {
         Storage::disk('public_uploads')->delete($this->attributes['icon']);
+    }
+    public function deleteFile5()
+    {
+        Storage::disk('public_uploads')->delete($this->attributes['flowchart_image']);
     }
 }

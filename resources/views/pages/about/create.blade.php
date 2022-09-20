@@ -61,6 +61,15 @@
                     @endisset
                     <hr>
                     <div class="mb-3">
+                        <label for="flowchart_image" class="form-label">Alur Aplikasi</label>
+                        <input type="file" @empty($about) required @endempty accept="image/*"
+                            class="form-control" name="flowchart_image">
+                    </div>
+                    @isset($about)
+                        <img src="{{ asset('uploads/' . $about->flowchart_image) }}" height="100px" alt="">
+                    @endisset
+                    <hr>
+                    <div class="mb-3">
                         <label for="logo" class="form-label">Logo</label>
                         <input type="file" @empty($about) required @endempty accept="image/*"
                             class="form-control" name="icon">
