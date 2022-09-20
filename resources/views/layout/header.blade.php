@@ -19,7 +19,7 @@
                         <a href="javascript:;" class="text-muted">Clear all</a> --}}
                     </div>
                     <div class="p-1">
-                        @foreach ($notifications as $notification)
+                        {{-- @foreach ($notifications as $notification) --}}
                             {{-- <a href="{{ $notification->data['url'] }}"
                                 class="dropdown-item d-flex align-items-center py-2">
                                 <div
@@ -31,7 +31,7 @@
                                     <p class="tx-12 text-muted">{{ $notification->created_at }}</p>
                                 </div>
                             </a> --}}
-                        @endforeach
+                        {{-- @endforeach --}}
                     </div>
                 </div>
             </li>
