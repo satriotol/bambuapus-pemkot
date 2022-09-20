@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +17,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -26,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('*', function ($view) {
+            $view->with('notifications', Auth::user()->unreadNotifications->take(5));
+        });
         Schema::defaultStringLength(125);
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');

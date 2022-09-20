@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Status;
+use App\Models\User;
 use App\Models\UserReport;
 use App\Models\UserReportStatus;
+use App\Notifications\NewReportNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class UserReportController extends Controller
@@ -80,6 +83,8 @@ class UserReportController extends Controller
             'user_report_id' => $user_report->id,
             'status_id' => Status::first()->id
         ]);
+        $admins = User::whereDoesntHave('user_detail')->get();
+        Notification::send($admins, new NewReportNotification($user_report));
         session()->flash('success');
         return redirect()->route('user_report.index');
     }
