@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function ($view) {
-            $view->with('notifications', Auth::user()->unreadNotifications->take(5));
+            $view->with('notifications', Auth::user()->unreadNotifications->take(5) ?? '');
         });
         Schema::defaultStringLength(125);
         config(['app.locale' => 'id']);
