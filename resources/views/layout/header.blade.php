@@ -19,19 +19,22 @@
                         <a href="javascript:;" class="text-muted">Clear all</a> --}}
                     </div>
                     <div class="p-1">
-                        @foreach ($notifications->unreadNotifications as $notification)
-                            <a href="{{ $notification->data['url'] }}"
-                                class="dropdown-item d-flex align-items-center py-2">
-                                <div
-                                    class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
-                                    <i class="icon-sm text-white" data-feather="gift"></i>
-                                </div>
-                                <div class="flex-grow-1 me-2">
-                                    <p>{{ $notification->data['message'] }} ({{ $notification->data['name'] }})</p>
-                                    <p class="tx-12 text-muted">{{ $notification->created_at }}</p>
-                                </div>
-                            </a>
-                        @endforeach
+                        @if ($notifications->unreadNotifications != null)
+
+                            @foreach ($notifications->unreadNotifications as $notification)
+                                <a href="{{ $notification->data['url'] }}"
+                                    class="dropdown-item d-flex align-items-center py-2">
+                                    <div
+                                        class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
+                                        <i class="icon-sm text-white" data-feather="gift"></i>
+                                    </div>
+                                    <div class="flex-grow-1 me-2">
+                                        <p>{{ $notification->data['message'] }} ({{ $notification->data['name'] }})</p>
+                                        <p class="tx-12 text-muted">{{ $notification->created_at }}</p>
+                                    </div>
+                                </a>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </li>
