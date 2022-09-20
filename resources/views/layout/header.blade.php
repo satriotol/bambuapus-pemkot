@@ -5,21 +5,21 @@
     <div class="navbar-content">
 
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i data-feather="bell"></i>
-                    <div class="indicator">
-                        <div class="circle"></div>
-                    </div>
-                </a>
-                <div class="dropdown-menu p-0" aria-labelledby="notificationDropdown">
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-                        {{-- <p>6 New Notifications</p>
+            @role('SUPERADMIN')
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i data-feather="bell"></i>
+                        <div class="indicator">
+                            <div class="circle"></div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu p-0" aria-labelledby="notificationDropdown">
+                        <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
+                            {{-- <p>6 New Notifications</p>
                         <a href="javascript:;" class="text-muted">Clear all</a> --}}
-                    </div>
-                    <div class="p-1">
-                        @role('SUPERADMIN')
+                        </div>
+                        <div class="p-1">
                             @foreach ($notifications as $notification)
                                 <a href="{{ $notification->data['url'] }}"
                                     class="dropdown-item d-flex align-items-center py-2">
@@ -33,10 +33,10 @@
                                     </div>
                                 </a>
                             @endforeach
-                        @endrole
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            @endrole
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
