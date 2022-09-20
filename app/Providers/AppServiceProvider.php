@@ -26,10 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $notifications = Auth::user()->unreadNotifications?->take(5);
-        if ($notifications == null) {
-            $notifications = 0;
-        }
+        $notifications = Auth::user();
         view()->composer('*', function ($view) use ($notifications) {
             $view->with('notifications', $notifications);
         });
