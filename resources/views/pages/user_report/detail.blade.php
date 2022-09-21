@@ -81,10 +81,6 @@
                                 <p>{{ $user_report->age }}</p>
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-bold">Umur</label>
-                                <p>{{ $user_report->age }}</p>
-                            </div>
-                            <div class="mb-3">
                                 <label for="name" class="form-label fw-bold">Alamat</label>
                                 <p>{{ $user_report->address }}</p>
                             </div>
