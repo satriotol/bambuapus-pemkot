@@ -37,8 +37,6 @@
                                     <div>
                                         <button class="btn btn-primary me-2 mb-2 mb-md-0" type="submit">Login</button>
                                     </div>
-                                    {{-- <a href="{{ route('register') }}" class="d-block mt-3 text-muted">Not a user? Sign
-                                        up</a> --}}
                                 </form>
                             </div>
                         </div>
