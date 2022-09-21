@@ -9,8 +9,10 @@ class UserReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'age', 'address', 'note', 'status_id'];
-
+    protected $fillable = ['user_id', 'name', 'age', 'address', 'note', 'status_id', 'gender', 'birth', 'birthplace', 'parent', 'phone', 'nik'];
+    const GENDER = [
+        'PRIA', 'WANITA'
+    ];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

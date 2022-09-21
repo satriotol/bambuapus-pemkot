@@ -29,9 +29,65 @@
                             value="{{ isset($user_report) ? $user_report->name : @old('name') }}">
                     </div>
                     <div class="mb-3">
-                        <label for="age" class="form-label">Umur Anak</label>
-                        <input type="number" name="age" required class="form-control" id=""
-                            value="{{ isset($user_report) ? $user_report->age : @old('age') }}">
+                        <label for="nik" class="form-label">NIK Anak</label>
+                        <input type="text" name="nik" class="form-control" id=""
+                            value="{{ isset($user_report) ? $user_report->nik : @old('nik') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nik" class="form-label">Jenis Kelamin</label>
+                        <select name="gender" required class="form-control">
+                            <option value="">Pilih Jenis Kelamin</option>
+                            @foreach ($genders as $gender)
+                                <option value="{{ $gender }}" @if (@old('gender') === $gender) selected @endif
+                                    @isset($user_report)
+                                    @if ($gender === $user_report->gender)
+                                        selected
+                                    @endif
+                                @endisset>
+                                    {{ $gender }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="parent" class="form-label">Nama Orang Tua</label>
+                                <input type="text" name="parent" required class="form-control" id=""
+                                    value="{{ isset($user_report) ? $user_report->parent : @old('parent') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Nomor HP</label>
+                                <input type="text" name="phone" required class="form-control" id=""
+                                    value="{{ isset($user_report) ? $user_report->phone : @old('phone') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Umur Anak</label>
+                                <input type="number" name="age" required class="form-control" id=""
+                                    value="{{ isset($user_report) ? $user_report->age : @old('age') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="birthplace" class="form-label">Kota Kelahiran</label>
+                                <input type="text" name="birthplace" required class="form-control" id=""
+                                    value="{{ isset($user_report) ? $user_report->birthplace : @old('birthplace') }}">
+                                <small>Contoh : KOTA SEMARANG, KABUPATEN SEMARANG</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="birth" class="form-label">Tanggal Lahir</label>
+                                <input type="date" name="birth" required class="form-control" id=""
+                                    value="{{ isset($user_report) ? $user_report->birth : @old('birthplace') }}">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Alamat Anak</label>

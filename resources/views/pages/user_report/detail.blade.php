@@ -57,6 +57,30 @@
                                 <p>{{ $user_report->name }}</p>
                             </div>
                             <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Jenis Kelamin</label>
+                                <p>{{ $user_report->gender }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">NIK</label>
+                                <p>{{ $user_report->nik }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Tempat, Tanggal Lahir</label>
+                                <p>{{ $user_report->birthplace }}, {{ $user_report->birth }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Nama Orang Tua</label>
+                                <p>{{ $user_report->parent }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Nomor HP</label>
+                                <p>{{ $user_report->phone }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Umur</label>
+                                <p>{{ $user_report->age }}</p>
+                            </div>
+                            <div class="mb-3">
                                 <label for="name" class="form-label fw-bold">Umur</label>
                                 <p>{{ $user_report->age }}</p>
                             </div>

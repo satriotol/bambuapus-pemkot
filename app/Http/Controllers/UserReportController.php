@@ -58,7 +58,8 @@ class UserReportController extends Controller
      */
     public function create()
     {
-        return view('pages.user_report.create');
+        $genders = UserReport::GENDER;
+        return view('pages.user_report.create', compact('genders'));
     }
 
     /**
@@ -74,7 +75,13 @@ class UserReportController extends Controller
             'name' => 'required',
             'age' => 'numeric',
             'address' => 'required',
-            'note' => 'nullable'
+            'note' => 'nullable',
+            'gender' => 'required',
+            'birth' => 'required',
+            'birthplace' => 'required',
+            'parent' => 'required',
+            'phone' => 'required',
+            'nik' => 'nullable',
         ]);
         $data['user_id'] = Auth::user()->id;
         $data['status_id'] = Status::first()->id;
@@ -115,7 +122,8 @@ class UserReportController extends Controller
         if ($user_report->user_id != Auth::user()->id && Auth::user()->user_detail != null || $user_report->status_id != 1) {
             return back();
         }
-        return view('pages.user_report.create', compact('user_report'));
+        $genders = UserReport::GENDER;
+        return view('pages.user_report.create', compact('user_report', 'genders'));
     }
 
     /**
@@ -132,7 +140,13 @@ class UserReportController extends Controller
             'name' => 'required',
             'age' => 'numeric',
             'address' => 'required',
-            'note' => 'nullable'
+            'note' => 'nullable',
+            'gender' => 'required',
+            'birth' => 'required',
+            'birthplace' => 'required',
+            'parent' => 'required',
+            'phone' => 'required',
+            'nik' => 'nullable',
         ]);
         $user_report->update($data);
         session()->flash('success');

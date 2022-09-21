@@ -80,7 +80,8 @@
                                     <th>Tanggal</th>
                                     <th>Pelapor</th>
                                     <th>Name</th>
-                                    <th>Alamat</th>
+                                    <th>Nomor HP</th>
+                                    <th>Jenis Kelamin</th>
                                     <th>Umur</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -92,7 +93,8 @@
                                         <td>{{ $user_report->created_at }}</td>
                                         <td>{{ $user_report->user->name }}</td>
                                         <td>{{ $user_report->name }}</td>
-                                        <td>{{ $user_report->address }}</td>
+                                        <td>{{ $user_report->phone }}</td>
+                                        <td>{{ $user_report->gender }}</td>
                                         <td>{{ $user_report->age }}</td>
                                         <td>
                                             <span class="badge bg-{{ $user_report->status->color }}">
