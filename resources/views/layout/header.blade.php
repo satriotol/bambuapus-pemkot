@@ -72,15 +72,11 @@
                     <span>Edit Profile</span>
                 </a>
             </li>
-            <li class="dropdown-item py-2">
+            <li class="py-2">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a class="text-body ms-0" style="cursor: pointer;" :href="route('logout')"
-                        onclick="event.preventDefault();
-                        this.closest('form').submit();">
-                        <i class="me-2 icon-md" data-feather="log-out"></i>
-                        <span>Log Out</span>
-                    </a>
+                    <button type="submit" class="btn btn-danger w-100"><i style="color: white" class="me-2 icon-md"
+                            data-feather="log-out"></i>Logout</button>
                 </form>
             </li>
         </ul>

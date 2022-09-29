@@ -11,7 +11,7 @@
         </ol>
     </nav>
 
-    <div class="grid-margin stretch-card">
+    <div class="grid-margin stretch-card" id="app">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Form Laporan</h4>
@@ -27,11 +27,6 @@
                         <label for="name" class="form-label">Nama Anak</label>
                         <input type="text" name="name" required class="form-control" id=""
                             value="{{ isset($user_report) ? $user_report->name : @old('name') }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="nik" class="form-label">NIK Anak</label>
-                        <input type="text" name="nik" class="form-control" id=""
-                            value="{{ isset($user_report) ? $user_report->nik : @old('nik') }}">
                     </div>
                     <div class="mb-3">
                         <label for="nik" class="form-label">Jenis Kelamin</label>
@@ -65,14 +60,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="age" class="form-label">Umur Anak</label>
                                 <input type="number" name="age" required class="form-control" id=""
                                     value="{{ isset($user_report) ? $user_report->age : @old('age') }}">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="birthplace" class="form-label">Kota Kelahiran</label>
                                 <input type="text" name="birthplace" required class="form-control" id=""
@@ -80,17 +75,23 @@
                                 <small>Contoh : KOTA SEMARANG, KABUPATEN SEMARANG</small>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="birth" class="form-label">Tanggal Lahir</label>
-                                <input type="date" name="birth" required class="form-control" id=""
-                                    value="{{ isset($user_report) ? $user_report->birth : @old('birthplace') }}">
-                            </div>
-                        </div>
-
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Alamat Anak</label>
+                        <textarea name="address" required class="form-control">{{ isset($user_report) ? $user_report->address : @old('address') }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kecamatan" class="form-label">Kecamatan</label>
+                        <select name="kecamatan_id" class="form-control" class="form-control" @change="onChange($event)"
+                            required>
+                            <option value="">Pilih Kecamatan</option>
+                            @foreach ($kecamatans as $kecamatan)
+                                <option value="{{ $kecamatan->id_kecamatan }}">{{ $kecamatan->nama_kecamatan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
                         <textarea name="address" required class="form-control">{{ isset($user_report) ? $user_report->address : @old('address') }}</textarea>
                     </div>
                     <div class="mb-3">
@@ -108,7 +109,30 @@
 @endsection
 
 @push('plugin-scripts')
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @endpush
 
 @push('custom-scripts')
+    <script>
+        const {
+            createApp
+        } = Vue
+
+        createApp({
+            data() {
+                return {
+                    kecamatan_id: "",
+                    message: 'Hello Vue!',
+                    kelurahans: [];
+                }
+            },
+            methods: {
+                onChange(event) {
+                    this.kecamatan_id = event.target.value;
+                    console.log(this.kecamatan_id);
+                }
+            }
+        }).mount('#app')
+    </script>
 @endpush

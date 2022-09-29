@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kecamatan;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\UserReport;
@@ -123,7 +124,8 @@ class UserReportController extends Controller
             return back();
         }
         $genders = UserReport::GENDER;
-        return view('pages.user_report.create', compact('user_report', 'genders'));
+        $kecamatans = Kecamatan::all();
+        return view('pages.user_report.create', compact('user_report', 'genders', 'kecamatans'));
     }
 
     /**
