@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\UserReport;
@@ -60,7 +61,8 @@ class UserReportController extends Controller
     public function create()
     {
         $genders = UserReport::GENDER;
-        return view('pages.user_report.create', compact('genders'));
+        $kecamatans = Kecamatan::all();
+        return view('pages.user_report.create', compact('genders', 'kecamatans'));
     }
 
     /**
@@ -78,11 +80,11 @@ class UserReportController extends Controller
             'address' => 'required',
             'note' => 'nullable',
             'gender' => 'required',
-            'birth' => 'required',
             'birthplace' => 'required',
             'parent' => 'required',
             'phone' => 'required',
-            'nik' => 'nullable',
+            'kelurahan_id' => 'required',
+            'kecamatan_id' => 'required',
         ]);
         $data['user_id'] = Auth::user()->id;
         $data['status_id'] = Status::first()->id;
@@ -144,11 +146,11 @@ class UserReportController extends Controller
             'address' => 'required',
             'note' => 'nullable',
             'gender' => 'required',
-            'birth' => 'required',
             'birthplace' => 'required',
             'parent' => 'required',
             'phone' => 'required',
-            'nik' => 'nullable',
+            'kelurahan_id' => 'required',
+            'kecamatan_id' => 'required',
         ]);
         $user_report->update($data);
         session()->flash('success');
@@ -167,5 +169,10 @@ class UserReportController extends Controller
         $user_report->user_report_statuses()->delete();
         session()->flash('success');
         return redirect()->route('user_report.index');
+    }
+    public function getKelurahan($kecamatan_id)
+    {
+        $kelurahans = Kelurahan::where('relasi_kecamatan', $kecamatan_id)->get();
+        return response()->json($kelurahans);
     }
 }

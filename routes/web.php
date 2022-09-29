@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'home'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('getKelurahan/{kecamatan_id}', [UserReportController::class, 'getKelurahan']);
     Route::get('/dashboard/reports', [DashboardController::class, 'reports'])->name('dashboard.reports');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('user_report', UserReportController::class);

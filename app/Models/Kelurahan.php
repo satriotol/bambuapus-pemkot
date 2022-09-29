@@ -13,6 +13,6 @@ class Kelurahan extends Model
 
     public function kecamatan()
     {
-        return $this->belongsTo(Kecamatan::class, 'relasi_kecamatan', 'id');
+        return $this->belongsTo(Kecamatan::class, 'relasi_kecamatan', 'id_kecamatan');
     }
 }

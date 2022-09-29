@@ -84,10 +84,25 @@
                         <label for="kecamatan" class="form-label">Kecamatan</label>
                         <select name="kecamatan_id" class="form-control" class="form-control" @change="onChange($event)"
                             required>
-                            <option value="">Pilih Kecamatan</option>
+                            <option value="0">Pilih Kecamatan</option>
                             @foreach ($kecamatans as $kecamatan)
-                                <option value="{{ $kecamatan->id_kecamatan }}">{{ $kecamatan->nama_kecamatan }}</option>
+                                <option
+                                    @isset($user_report)
+                                    {{ $kecamatan->id_kecamatan == $user_report->kelurahan->relasi_kecamatan ? 'selected' : '' }}
+                                @endisset
+                                    value="{{ $kecamatan->id_kecamatan }}">{{ $kecamatan->nama_kecamatan }}</option>
                             @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kelurahan" class="form-label">Kelurahan</label>
+                        <select name="kelurahan_id" class="form-control" class="form-control" required
+                            v-model="kelurahan_id">
+                            <option value="">Pilih Kelurahan</option>
+                            <option v-for="kelurahan in kelurahans" :value="kelurahan.id_kelurahan"
+                                :key="kelurahan.id_kelurahan">
+                                @{{ kelurahan.nama_kelurahan }}
+                            </option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -122,17 +137,34 @@
         createApp({
             data() {
                 return {
-                    kecamatan_id: "",
-                    message: 'Hello Vue!',
-                    kelurahans: [];
+                    kecamatan_id: @isset($user_report)
+                        {{ $user_report->kelurahan->relasi_kecamatan }}
+                    @endisset @empty($user_report)
+                        ''
+                    @endempty ,
+                    kelurahan_id: '',
+                    kelurahans: []
                 }
             },
             methods: {
                 onChange(event) {
                     this.kecamatan_id = event.target.value;
-                    console.log(this.kecamatan_id);
+                    this.kelurahan_id = "";
+                    axios.get("/getKelurahan/" + this.kecamatan_id)
+                        .then((res) => {
+                            this.kelurahans = res.data;
+                        });
                 }
-            }
+            },
+            mounted() {
+                @isset($user_report)
+                    this.kelurahan_id = {!! $user_report->kelurahan_id !!};
+                    axios.get("/getKelurahan/" + this.kecamatan_id)
+                        .then((res) => {
+                            this.kelurahans = res.data;
+                        });
+                @endisset
+            },
         }).mount('#app')
     </script>
 @endpush

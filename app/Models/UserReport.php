@@ -27,6 +27,6 @@ class UserReport extends Model
     }
     public function kelurahan()
     {
-        return $this->belongsTo(Kelurahan::class, 'kelurahan_id', 'id');
+        return $this->belongsTo(Kelurahan::class, 'kelurahan_id', 'id_kelurahan');
     }
 }

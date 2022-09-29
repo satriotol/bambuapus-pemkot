@@ -61,11 +61,7 @@
                                 <p>{{ $user_report->gender }}</p>
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-bold">NIK</label>
-                                <p>{{ $user_report->nik }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label for="name" class="form-label fw-bold">Tempat, Tanggal Lahir</label>
+                                <label for="name" class="form-label fw-bold">Tempat Lahir</label>
                                 <p>{{ $user_report->birthplace }}, {{ $user_report->birth }}</p>
                             </div>
                             <div class="mb-3">
@@ -82,7 +78,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-bold">Alamat</label>
-                                <p>{{ $user_report->address }}</p>
+                                <p>{{ $user_report->address }} <br>
+                                    Kecamatan : {{ $user_report->kelurahan->kecamatan->nama_kecamatan }} <br>
+                                    Kelurahan : {{ $user_report->kelurahan->nama_kelurahan }}
+                                </p>
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-bold">Catatan</label>
