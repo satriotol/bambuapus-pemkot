@@ -29,4 +29,8 @@ class UserReport extends Model
     {
         return $this->belongsTo(Kelurahan::class, 'kelurahan_id', 'id_kelurahan');
     }
+    public function getReportStatusLast()
+    {
+        return $this->user_report_statuses->where('status_id',2)->first()->created_at ?? '-';
+    }
 }

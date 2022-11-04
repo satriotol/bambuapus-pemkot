@@ -12,6 +12,7 @@ use App\Notifications\NewReportNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserReportController extends Controller
 {
@@ -112,6 +113,12 @@ class UserReportController extends Controller
             return back();
         }
         return view('pages.user_report.detail', compact('user_report', 'statuses'));
+    }
+    public function getPdf(UserReport $user_report)
+    {
+        $pdf = Pdf::loadView('pdf.report', ['user_report' =>
+        $user_report]);
+        return $pdf->download('report.pdf');
     }
 
     /**

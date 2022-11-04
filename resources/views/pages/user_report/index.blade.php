@@ -95,7 +95,8 @@
                                         <td>{{ $user_report->name }}</td>
                                         <td>{{ $user_report->phone }}</td>
                                         <td>{{ $user_report->gender }}</td>
-                                        <td>{{ $user_report->age }}</td>
+                                        <td>{{ $user_report->age }}
+                                        </td>
                                         <td>
                                             <span class="badge bg-{{ $user_report->status->color }}">
                                                 {{ $user_report->status->name }}
@@ -103,6 +104,12 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
+                                                @if (!Auth::user()->user_detail)
+                                                    <a href="{{ route('user_report.getPdf', $user_report->id) }}"
+                                                        target="_blank" class="btn btn-sm btn-info">
+                                                        Cetak
+                                                    </a>
+                                                @endif
                                                 <a href="{{ route('user_report.show', $user_report->id) }}"
                                                     class="btn btn-sm btn-primary">
                                                     Detail

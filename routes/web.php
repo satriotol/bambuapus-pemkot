@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/reports', [DashboardController::class, 'reports'])->name('dashboard.reports');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('user_report', UserReportController::class);
+    Route::get('user_report/getPdf/{user_report}', [UserReportController::class, 'getPdf'])->name('user_report.getPdf');
     Route::resource('status', StatusController::class);
     Route::resource('slider', SliderController::class);
     Route::resource('socialMedia', SocialMediaController::class);
