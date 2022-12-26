@@ -17,42 +17,23 @@
         #statistic {
             padding-top: 5rem;
         }
-
-        .carousel-cell {
-            width: 100%;
-            /* full width */
-            height: 500px;
-            background: url(https://sandbox.inspektorat.semarangkota.go.id/public/uploads/file/12172022105115-banner.jpg);
-            /* center images in cells with flexbox */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel.is-fullscreen .carousel-cell {
-            height: 100%;
-        }
-
-        .carousel-cell img {
-            display: block;
-            max-height: 100%;
-        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 @endpush
 @section('content')
     <!-- slider area end -->
+
     <section
         style="background: url(https://sandbox.inspektorat.semarangkota.go.id/public/uploads/file/12172022105115-banner.jpg);">
-
-        {{-- <div class="container"> --}}
-
-        <div class="main-carousel">
-            @foreach ($sliders as $slider)
-                <div class="carousel-cell"><img src="{{ asset('uploads/' . $slider->image) }}" alt=""></div>
-            @endforeach
+        <div class="container">
+            <div class="main-carousel">
+                @foreach ($sliders as $slider)
+                    <div class="carousel-cell"><img src="{{ asset('uploads/' . $slider->image) }}" alt="" class="w-100"
+                            style="height: 100%">
+                    </div>
+                @endforeach
+            </div>
         </div>
-        {{-- </div> --}}
     </section>
     <!-- features area start -->
     <section class="features__area">
@@ -424,6 +405,7 @@
         $('.main-carousel').flickity({
             // options
             cellAlign: 'left',
+            pageDots: false,
             wrapAround: true
         });
     </script>
