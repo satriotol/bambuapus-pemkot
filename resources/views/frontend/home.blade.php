@@ -17,43 +17,43 @@
         #statistic {
             padding-top: 5rem;
         }
+
+        .carousel-cell {
+            width: 100%;
+            /* full width */
+            height: 500px;
+            background: url(https://sandbox.inspektorat.semarangkota.go.id/public/uploads/file/12172022105115-banner.jpg);
+            /* center images in cells with flexbox */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel.is-fullscreen .carousel-cell {
+            height: 100%;
+        }
+
+        .carousel-cell img {
+            display: block;
+            max-height: 100%;
+        }
     </style>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 @endpush
 @section('content')
-    <section class="slider__area">
-        <div class="slider__active swiper-container">
-            <div class="swiper-wrapper">
-                @foreach ($sliders as $slider)
-                    <div class="slider__item swiper-slide p-relative slider__height d-flex align-items-center z-index-1">
-                        <div class="slider__bg slider__overlay include-bg"
-                            data-background="{{ asset('uploads/' . $slider->image) }}"></div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10 col-sm-10">
-                                    <div class="slider__content p-relative z-index-1">
-                                        <span data-animation="fadeInUp" data-delay=".3s">Bamboo Apus</span>
-                                        <h2 class="slider__title" data-animation="fadeInUp" data-delay=".6s">
-                                            {{ $slider->name }}</h2>
-                                        <p data-animation="fadeInUp" data-delay=".9s">{{ $slider->description }}
-                                        </p>
-                                        <div class="slider__btn" data-animation="fadeInUp" data-delay="1.1s">
-                                            <a href="{{ route('frontend.login') }}" class="tp-btn">Buat Laporan</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="main-slider-paginations">
-                <button class="slider-button-next"><i class="fa-regular fa-arrow-right"></i></button>
-                <button class="slider-button-prev"><i class="fa-regular fa-arrow-left"></i></button>
-            </div>
-        </div>
-    </section>
     <!-- slider area end -->
+    <section
+        style="background: url(https://sandbox.inspektorat.semarangkota.go.id/public/uploads/file/12172022105115-banner.jpg);">
 
+        {{-- <div class="container"> --}}
+
+        <div class="main-carousel">
+            @foreach ($sliders as $slider)
+                <div class="carousel-cell"><img src="{{ asset('uploads/' . $slider->image) }}" alt=""></div>
+            @endforeach
+        </div>
+        {{-- </div> --}}
+    </section>
     <!-- features area start -->
     <section class="features__area">
         <div class="container">
@@ -105,14 +105,14 @@
                                         stroke-linejoin="round" />
                                     <path
                                         d="M22.7593 1.115L40.0093 8.01495C40.6801 8.28329 41.2168 9.08827 41.2168 9.79744V16.1608C41.2168 17.215 40.3543 18.0775 39.3001 18.0775H4.80014C3.74597 18.0775 2.88347 17.215 2.88347 16.1608V9.79744C2.88347 9.08827 3.42014 8.28329 4.09098 8.01495L21.341 1.115C21.7243 0.961667 22.376 0.961667 22.7593 1.115Z"
-                                        stroke="#031220" stroke-width="1.5" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
+                                        stroke="#031220" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                     <path d="M0.966797 39.1608H43.1335" stroke="#031220" stroke-width="1.5"
                                         stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                     <path
                                         d="M22.0501 13.2858C23.6379 13.2858 24.9251 11.9986 24.9251 10.4108C24.9251 8.82295 23.6379 7.53577 22.0501 7.53577C20.4623 7.53577 19.1751 8.82295 19.1751 10.4108C19.1751 11.9986 20.4623 13.2858 22.0501 13.2858Z"
-                                        stroke="#031220" stroke-width="1.5" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
+                                        stroke="#031220" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div class="features__content">
@@ -418,3 +418,13 @@
         </div>
     </section>
 @endsection
+@push('custom-scripts')
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script>
+        $('.main-carousel').flickity({
+            // options
+            cellAlign: 'left',
+            wrapAround: true
+        });
+    </script>
+@endpush
