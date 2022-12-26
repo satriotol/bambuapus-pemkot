@@ -2708,6 +2708,7 @@ input[type="color"] {
 }
 @media (max-width: 575px) {
     .features__inner {
+    margin-top: 0px;
         padding-left: 35px;
         padding-right: 35px;
     }
