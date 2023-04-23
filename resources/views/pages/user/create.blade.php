@@ -58,6 +58,9 @@
                         <input type="password" @empty($user) required @endempty
                             name="password_confirmation" class="form-control">
                     </div>
+                    <div class="mb-3">
+                        <img src="{{ asset('uploads/' . $user->image) }}" alt="">
+                    </div>
                     <div class="text-end">
                         <a class="btn btn-warning" href="{{ url()->previous() }}">Kembali</a>
                         <input class="btn btn-success" type="submit" value="Simpan">

@@ -29,9 +29,6 @@ class ProfileController extends Controller
             $name = $file->getClientOriginalName();
             $file_name = date('mdYHis') . '-' . $name;
             $file = $file->storeAs('file', $file_name, 'public_uploads');
-            if (Auth::user()->image) {
-                $user->deleteFile();
-            }
             $data['image'] = $file;
         };
         if ($request->password) {
