@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class UserReport extends Model
 {
@@ -13,6 +14,14 @@ class UserReport extends Model
     const GENDER = [
         'PRIA', 'WANITA'
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = Str::uuid()->toString();
+        });
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -31,6 +40,6 @@ class UserReport extends Model
     }
     public function getReportStatusLast()
     {
-        return $this->user_report_statuses->where('status_id',2)->first()->created_at ?? '-';
+        return $this->user_report_statuses->where('status_id', 2)->first()->created_at ?? '-';
     }
 }

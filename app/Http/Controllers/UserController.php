@@ -78,8 +78,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($uuid)
     {
+        $user = User::where('uuid', $uuid)->first();
         return view('pages.user.create', compact('user'));
     }
 

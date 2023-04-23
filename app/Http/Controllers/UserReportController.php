@@ -106,8 +106,9 @@ class UserReportController extends Controller
      * @param  \App\Models\UserReport  $userReport
      * @return \Illuminate\Http\Response
      */
-    public function show(UserReport $user_report)
+    public function show($uuid)
     {
+        $user_report = UserReport::where('uuid', $uuid)->first();
         $statuses = Status::all();
         if ($user_report->user_id != Auth::user()->id && Auth::user()->user_detail != null) {
             return back();
@@ -127,8 +128,9 @@ class UserReportController extends Controller
      * @param  \App\Models\UserReport  $userReport
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserReport $user_report)
+    public function edit($uuid)
     {
+        $user_report = UserReport::where('uuid', $uuid)->first();
         if ($user_report->user_id != Auth::user()->id && Auth::user()->user_detail != null || $user_report->status_id != 1) {
             return back();
         }
@@ -170,8 +172,9 @@ class UserReportController extends Controller
      * @param  \App\Models\UserReport  $userReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserReport $user_report)
+    public function destroy($uuid)
     {
+        $user_report = UserReport::where('uuid', $uuid)->first();
         $user_report->delete();
         $user_report->user_report_statuses()->delete();
         session()->flash('success');

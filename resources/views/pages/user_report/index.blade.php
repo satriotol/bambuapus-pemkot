@@ -110,14 +110,14 @@
                                                         Cetak
                                                     </a>
                                                 @endif
-                                                <a href="{{ route('user_report.show', $user_report->id) }}"
+                                                <a href="{{ route('user_report.show', $user_report->uuid) }}"
                                                     class="btn btn-sm btn-primary">
                                                     Detail
                                                 </a>
                                                 @if ($user_report->status->name == 'PENDING')
-                                                    <a href="{{ route('user_report.edit', $user_report->id) }}"
+                                                    <a href="{{ route('user_report.edit', $user_report->uuid) }}"
                                                         class="btn btn-sm btn-warning">Edit</a>
-                                                    <form action="{{ route('user_report.destroy', $user_report->id) }}"
+                                                    <form action="{{ route('user_report.destroy', $user_report->uuid) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

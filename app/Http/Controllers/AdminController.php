@@ -77,9 +77,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $admin)
+    public function edit($uuid)
     {
         $roles = Role::all();
+        $admin = User::where('uuid', $uuid)->first();
         return view('pages.admin.create', compact('admin', 'roles'));
     }
 

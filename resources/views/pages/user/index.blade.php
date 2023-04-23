@@ -50,7 +50,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ route('user.edit', $user->id) }}"
+                                                <a href="{{ route('user.edit', $user->uuid) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <form action="{{ route('admin.reset_password', $user->id) }}"
                                                     method="POST">
