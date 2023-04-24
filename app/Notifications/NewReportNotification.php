@@ -55,7 +55,7 @@ class NewReportNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'url' => route('user_report.show', $this->user_report->id),
+            'url' => route('user_report.show', $this->user_report->uuid),
             'name' => $this->user_report->name,
             'status' => $this->user_report->status->name,
             'message' => 'Ada Laporan Baru',
