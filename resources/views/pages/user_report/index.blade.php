@@ -91,7 +91,7 @@
                                 @foreach ($user_reports as $user_report)
                                     <tr>
                                         <td>{{ $user_report->created_at }}</td>
-                                        <td>{{ $user_report->user->name }}</td>
+                                        <td>{{ $user_report->user?->name }}</td>
                                         <td>{{ $user_report->name }}</td>
                                         <td>{{ $user_report->phone }}</td>
                                         <td>{{ $user_report->gender }}</td>

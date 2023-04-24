@@ -39,13 +39,13 @@
                         <input type="password" @empty($user) required @endempty
                             name="password_confirmation" class="form-control">
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label>Foto</label>
                         <input type="file" name="image" class="form-control">
                     </div>
                     @isset($user)
                         <img src="{{ asset('uploads/' . $user->image) }}" height="150px" alt="">
-                    @endisset
+                    @endisset --}}
                     <div class="text-end">
                         <input class="btn btn-success" type="submit" value="Simpan">
                     </div>
