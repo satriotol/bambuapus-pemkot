@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LinkController;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'home'])->name('home');
+Route::get('/login/eksekutif', [AuthenticatedSessionController::class, 'loginEksekutif']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('getKelurahan/{kecamatan_id}', [UserReportController::class, 'getKelurahan']);
